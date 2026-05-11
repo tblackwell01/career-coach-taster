@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+body { font-family: monospace; padding: 32px; background: #0f2640; color: #eee; }
+h2 { color: #C9A84C; margin-bottom: 16px; }
+button { background: #C9A84C; color: #0f2640; border: none; padding: 12px 24px; font-size: 14px; font-weight: bold; cursor: pointer; border-radius: 8px; margin-bottom: 20px; display: block; }
+pre { background: #1a3a5c; padding: 16px; border-radius: 8px; white-space: pre-wrap; word-break: break-all; font-size: 13px; line-height: 1.6; margin-bottom: 16px; }
+.label { color: #C9A84C; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<h2>Worker Diagnostic</h2>
+<button onclick="test()">Run Test</button>
+<div id="out"><pre>Click the button to test your Worker.</pre></div>
+<script>
+function test() {
+  var out = document.getElementById('out');
+  out.innerHTML = '<pre>Sending request...</pre>';
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://career-coach-proxy.tcblackwell.workers.dev', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      out.innerHTML = [
+        '<div class="label">HTTP Status</div>',
+        '<pre>' + xhr.status + ' ' + xhr.statusText + '</pre>',
+        '<div class="label">Response Headers</div>',
+        '<pre>' + xhr.getAllResponseHeaders() + '</pre>',
+        '<div class="label">Response Body</div>',
+        '<pre>' + (xhr.responseText || '(empty)') + '</pre>'
+      ].join('');
+    }
+  };
+
+  xhr.onerror = function() {
+    out.innerHTML = '<pre>Network error. The request was blocked entirely.\n\nThis means either:\n1. The Worker URL is wrong\n2. CORS is blocking the preflight request\n3. The Worker is down</pre>';
+  };
+
+  xhr.send(JSON.stringify({
+    model: 'claude-sonnet-4-20250514',
+    max_tokens: 50,
+    messages: [{ role: 'user', content: 'Say hello.' }]
+  }));
+}
+</script>
+</body>
+</html>
