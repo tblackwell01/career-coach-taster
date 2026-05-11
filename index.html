@@ -89,7 +89,7 @@ textarea::placeholder{color:#b0b8c4}
     <p>A taster. Three of seven factors, powered by AI. A glimpse of what is coming.</p>
     <div class="gold-line"></div>
   </div>
-  <div id="app-root"></div>
+  <div id="root"></div>
   <p class="disclaimer">
     Preview of a tool in development. Built on the Factors of Career Choice&copy; framework by Tyler Blackwell.<br>
     Your responses are not stored. This conversation exists only in this session.
@@ -104,207 +104,215 @@ var FACTORS = [
     id: 'abilities',
     num: 'Factor 1 of 3',
     name: 'Abilities',
-    question: 'What are you naturally good at &mdash; before anyone taught you?',
-    subprompt: 'Think about what has always come easily to you. Not skills you worked hard to build, but the capacities that were already there. The way you think, connect ideas, listen, lead, make things, see patterns. What do people ask for your help with, unprompted?',
-    placeholder: 'Take your time. There is no right answer. Just write what comes to mind...',
-    system: 'You are a thoughtful career coach trained in the Factors of Career Choice framework. The user is responding to a question about their natural Abilities. Reflect back what you hear, name the ability underneath their words, and offer one insight that helps them see themselves more clearly. Be warm, specific, and grounded. Do not use lists. Write 2-3 short paragraphs in flowing prose. End with one question that deepens their reflection. Keep under 200 words.'
+    question: 'What are you naturally good at before anyone taught you?',
+    sub: 'Think about what has always come easily to you. Not skills you worked hard to build, but the capacities that were already there. The way you think, connect ideas, listen, lead, make things, see patterns. What do people ask for your help with, unprompted?',
+    ph: 'Take your time. There is no right answer. Just write what comes to mind...',
+    sys: 'You are a thoughtful career coach trained in the Factors of Career Choice framework. The user is responding to a question about their natural Abilities. Reflect back what you hear, name the ability underneath their words, and offer one insight that helps them see themselves more clearly. Be warm, specific, and grounded. Do not use lists. Write 2-3 short paragraphs in flowing prose. End with one question that deepens their reflection. Keep under 200 words.'
   },
   {
     id: 'skills',
     num: 'Factor 2 of 3',
     name: 'Skills',
-    question: 'Which skills did you choose &mdash; and which chose you?',
-    subprompt: 'Skills are built, not born. Some you pursued because you wanted to. Others developed because circumstance required it. Which ones energize you when you use them? Which feel like obligation?',
-    placeholder: 'Think about skills you use every day versus skills you are genuinely proud of...',
-    system: 'You are a thoughtful career coach trained in the Factors of Career Choice framework. The user is reflecting on their Skills. Reflect what you hear, name the distinction between chosen and obligated skills, and help them see which skills align with who they actually are. Be warm and precise. No lists. Write 2-3 short paragraphs. End with one question. Keep under 200 words.'
+    question: 'Which skills did you choose and which chose you?',
+    sub: 'Skills are built, not born. Some you pursued because you wanted to. Others developed because circumstance required it. Which ones energize you when you use them? Which feel like obligation?',
+    ph: 'Think about skills you use every day versus skills you are genuinely proud of...',
+    sys: 'You are a thoughtful career coach trained in the Factors of Career Choice framework. The user is reflecting on their Skills. Reflect what you hear, name the distinction between chosen and obligated skills, and help them see which skills align with who they actually are. Be warm and precise. No lists. Write 2-3 short paragraphs. End with one question. Keep under 200 words.'
   },
   {
     id: 'family',
     num: 'Factor 3 of 3',
     name: 'Family',
-    question: 'What did your family teach you about work &mdash; without ever saying it out loud?',
-    subprompt: 'Your family of origin handed you a script before you knew you were learning one. What did yours say about ambition, money, stability, risk, or what kinds of work were acceptable? How has the family you have built shaped your career decisions since?',
-    placeholder: 'This one runs deep. Write whatever surfaces, even if it surprises you...',
-    system: 'You are a thoughtful career coach trained in the Factors of Career Choice framework, developed with Richard Blackwell PhD, a psychologist with 50 years of practice. The user is reflecting on the Family factor. Name the pattern or script you observe. Help them see what was inherited versus what was chosen. Be warm, respectful, and honest. Do not be clinical. Write 2-3 short paragraphs in flowing prose. End with one gentle question. Keep under 220 words.'
+    question: 'What did your family teach you about work without ever saying it out loud?',
+    sub: 'Your family of origin handed you a script before you knew you were learning one. What did yours say about ambition, money, stability, risk, or what kinds of work were acceptable? How has the family you have built shaped your career decisions since?',
+    ph: 'This one runs deep. Write whatever surfaces, even if it surprises you...',
+    sys: 'You are a thoughtful career coach trained in the Factors of Career Choice framework, developed with Richard Blackwell PhD, a psychologist with 50 years of practice. The user is reflecting on the Family factor. Name the pattern or script you observe. Help them see what was inherited versus what was chosen. Be warm, respectful, and honest. Do not be clinical. Write 2-3 short paragraphs in flowing prose. End with one gentle question. Keep under 220 words.'
   }
 ];
 
-var step = 0;
-var saved = {};
-var reflections = {};
+var state = { step: 0, saved: {}, reflections: {} };
 
-function el(id) { return document.getElementById(id); }
-function root() { return el('app-root'); }
+function qs(id) { return document.getElementById(id); }
 
-function render() {
-  if (step === 0) showWelcome();
-  else if (step >= 1 && step <= 3) showFactor(step - 1);
-  else showSynthesis();
+function paras(text) {
+  return text.split('\n\n').map(function(p) {
+    return '<p>' + p.replace(/\n/g, '<br>') + '</p>';
+  }).join('');
 }
 
-function showWelcome() {
-  root().innerHTML = [
-    '<div class="welcome">',
-    '<div class="welcome-icon">&#x1F9ED;</div>',
-    '<h2>Where did your career come from?</h2>',
-    '<p>Most career advice tells you what to do next. This asks something different: who are you, and what shaped you?</p>',
-    '<p>You will reflect on three of the seven Factors of Career Choice and get a real AI reflection after each one.</p>',
-    '<div class="expect-box">',
-    '<h4>What to expect</h4>',
-    '<div class="expect-item"><b>3</b><span>short reflective questions</span></div>',
-    '<div class="expect-item"><b>AI</b><span>responses grounded in behavioral science</span></div>',
-    '<div class="expect-item"><b>~8</b><span>minutes, no account required</span></div>',
-    '</div>',
-    '<button class="btn btn-primary" id="begin-btn" style="width:100%;justify-content:center;font-size:15px;padding:16px;">Begin &rarr;</button>',
-    '</div>'
-  ].join('');
-  el('begin-btn').addEventListener('click', function() { step = 1; render(); scrollTop(); });
+function go(step) {
+  state.step = step;
+  draw();
+  window.scrollTo(0, 0);
 }
 
-function showFactor(idx) {
+function draw() {
+  var r = qs('root');
+  if (state.step === 0) { drawWelcome(r); return; }
+  if (state.step >= 1 && state.step <= 3) { drawFactor(r, state.step - 1); return; }
+  drawSynth(r);
+}
+
+function drawWelcome(r) {
+  r.innerHTML = '<div class="welcome">' +
+    '<div class="welcome-icon">&#x1F9ED;</div>' +
+    '<h2>Where did your career come from?</h2>' +
+    '<p>Most career advice tells you what to do next. This asks something different: who are you, and what shaped you?</p>' +
+    '<p>You will reflect on three of the seven Factors of Career Choice and get a real AI reflection after each one.</p>' +
+    '<div class="expect-box"><h4>What to expect</h4>' +
+    '<div class="expect-item"><b>3</b><span>short reflective questions</span></div>' +
+    '<div class="expect-item"><b>AI</b><span>responses grounded in behavioral science</span></div>' +
+    '<div class="expect-item"><b>~8</b><span>minutes, no account required</span></div></div>' +
+    '<button id="begin" class="btn btn-primary" style="width:100%;justify-content:center;font-size:15px;padding:16px;">Begin &#x2192;</button>' +
+    '</div>';
+  qs('begin').onclick = function() { go(1); };
+}
+
+function drawFactor(r, idx) {
   var f = FACTORS[idx];
   var pct = (idx / 3) * 100;
 
-  var pillsHtml = '';
-  for (var i = 0; i < FACTORS.length; i++) {
+  var pills = '';
+  for (var i = 0; i < 3; i++) {
     var cls = i < idx ? 'done' : i === idx ? 'active' : 'upcoming';
-    var label = i < idx ? ('&#10003; ' + FACTORS[i].name) : FACTORS[i].name;
-    pillsHtml += '<div class="pill ' + cls + '">' + label + '</div>';
+    pills += '<div class="pill ' + cls + '">' + (i < idx ? '&#10003; ' : '') + FACTORS[i].name + '</div>';
   }
 
-  root().innerHTML = [
-    '<div class="pills">' + pillsHtml + '</div>',
-    '<div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:' + pct + '%"></div></div></div>',
-    '<div class="card">',
-    '<span class="card-label">' + f.num + ' &nbsp;&middot;&nbsp; ' + f.name + '</span>',
-    '<h2>' + f.question + '</h2>',
-    '<p class="subprompt">' + f.subprompt + '</p>',
-    '<textarea id="ta" placeholder="' + f.placeholder + '" rows="5"></textarea>',
-    '<div class="char-count" id="cc">0 characters &mdash; type at least 20 to continue</div>',
-    '<div class="btn-row">',
-    idx > 0 ? '<button class="btn btn-ghost" id="back-btn">&larr; Back</button>' : '',
-    '<button class="btn btn-primary" id="submit-btn" disabled>Get reflection &rarr;</button>',
-    '</div>',
-    '</div>',
-    '<div id="reflection-area"></div>'
-  ].join('');
+  r.innerHTML =
+    '<div class="pills">' + pills + '</div>' +
+    '<div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" id="pf" style="width:' + pct + '%"></div></div></div>' +
+    '<div class="card">' +
+    '<span class="card-label">' + f.num + ' &middot; ' + f.name + '</span>' +
+    '<h2>' + f.question + '</h2>' +
+    '<p class="subprompt">' + f.sub + '</p>' +
+    '<textarea id="ta" rows="5" placeholder="' + f.ph + '"></textarea>' +
+    '<div class="char-count" id="cc">0 characters &mdash; type at least 20 to continue</div>' +
+    '<div class="btn-row">' +
+    (idx > 0 ? '<button id="backbtn" class="btn btn-ghost">&#x2190; Back</button>' : '') +
+    '<button id="submitbtn" class="btn btn-primary" disabled>Get reflection &#x2192;</button>' +
+    '</div></div>' +
+    '<div id="rarea"></div>';
 
-  var ta = el('ta');
-  var btn = el('submit-btn');
-  var cc = el('cc');
+  var ta = qs('ta');
+  var sb = qs('submitbtn');
+  var cc = qs('cc');
 
-  if (saved[f.id]) {
-    ta.value = saved[f.id];
-    var l = ta.value.trim().length;
-    cc.textContent = l + ' characters';
-    btn.disabled = false;
-    if (reflections[f.id]) showReflection(reflections[f.id], idx);
-  }
-
-  ta.addEventListener('input', function() {
+  // Restore saved text
+  if (state.saved[f.id]) {
+    ta.value = state.saved[f.id];
     var len = ta.value.trim().length;
-    cc.textContent = len + ' characters' + (len < 20 ? ' \u2014 type at least 20 to continue' : '');
-    btn.disabled = len < 20;
-  });
+    cc.textContent = len + ' characters';
+    sb.disabled = false;
+  }
 
-  btn.addEventListener('click', function() { doSubmit(idx); });
+  // Restore saved reflection
+  if (state.reflections[f.id]) {
+    showRefl(state.reflections[f.id], idx);
+  }
+
+  ta.oninput = function() {
+    var l = ta.value.trim().length;
+    cc.textContent = l + ' characters' + (l < 20 ? ' \u2014 type at least 20 to continue' : '');
+    sb.disabled = l < 20;
+  };
+
+  sb.onclick = function() { submit(idx); };
 
   if (idx > 0) {
-    el('back-btn').addEventListener('click', function() { step--; render(); scrollTop(); });
+    qs('backbtn').onclick = function() { go(state.step - 1); };
   }
 }
 
-function doSubmit(idx) {
+function submit(idx) {
   var f = FACTORS[idx];
-  var ta = el('ta');
+  var ta = qs('ta');
   var text = ta.value.trim();
   if (text.length < 20) return;
 
-  saved[f.id] = text;
+  state.saved[f.id] = text;
 
-  var btn = el('submit-btn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> Reflecting...';
+  var sb = qs('submitbtn');
+  sb.disabled = true;
+  sb.innerHTML = '<span class="spinner"></span> Reflecting...';
   ta.disabled = true;
 
-  el('reflection-area').innerHTML = [
-    '<div class="ai-box">',
-    '<div class="ai-label">Reflecting on your ' + f.name + '</div>',
-    '<div class="dots"><span></span><span></span><span></span></div>',
-    '</div>'
-  ].join('');
+  qs('rarea').innerHTML =
+    '<div class="ai-box"><div class="ai-label">Reflecting on your ' + f.name + '</div>' +
+    '<div class="dots"><span></span><span></span><span></span></div></div>';
 
   fetch(PROXY, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-6',
       max_tokens: 1000,
-      system: f.system,
+      system: f.sys,
       messages: [{ role: 'user', content: text }]
     })
   })
   .then(function(res) { return res.json(); })
   .then(function(data) {
     if (data.error) throw new Error(JSON.stringify(data.error));
-    var reflection = data.content && data.content[0] && data.content[0].text;
-    if (!reflection) throw new Error('No content in response');
-    reflections[f.id] = reflection;
-    showReflection(reflection, idx);
+    var txt = data.content && data.content[0] && data.content[0].text;
+    if (!txt) throw new Error('No content returned');
+    state.reflections[f.id] = txt;
+    showRefl(txt, idx);
   })
   .catch(function(err) {
-    el('reflection-area').innerHTML = [
-      '<div class="ai-box">',
-      '<div class="ai-label">Something went wrong</div>',
-      '<p>' + err.message + '</p>',
-      '</div>'
-    ].join('');
-    btn.disabled = false;
-    btn.innerHTML = 'Get reflection &rarr;';
+    qs('rarea').innerHTML =
+      '<div class="ai-box"><div class="ai-label">Error</div>' +
+      '<p>' + err.message + '</p></div>';
+    sb.disabled = false;
+    sb.innerHTML = 'Get reflection &#x2192;';
     ta.disabled = false;
   });
 }
 
-function showReflection(text, idx) {
-  var paras = text.split('\n\n').map(function(p) {
-    return '<p>' + p.replace(/\n/g, '<br>') + '</p>';
-  }).join('');
+function showRefl(text, idx) {
+  var isLast = idx === 2;
+  var nextHtml = isLast
+    ? '<button id="synthbtn" class="btn btn-gold" style="flex:1;justify-content:center;">See your full picture &#x2192;</button>'
+    : '<button id="nextbtn" class="btn btn-primary" style="flex:1;justify-content:center;">Continue to ' + FACTORS[idx + 1].name + ' &#x2192;</button>';
 
-  var nextBtn = idx === 2
-    ? '<button class="btn btn-gold" id="synth-btn" style="flex:1;justify-content:center;">See your full picture &rarr;</button>'
-    : '<button class="btn btn-primary" id="next-btn" style="flex:1;justify-content:center;">Continue to ' + FACTORS[idx + 1].name + ' &rarr;</button>';
+  qs('rarea').innerHTML =
+    '<div class="ai-box"><div class="ai-label">Your reflection on ' + FACTORS[idx].name + '</div>' +
+    paras(text) + '</div>' +
+    '<div class="btn-row" style="margin-top:16px;">' + nextHtml + '</div>';
 
-  el('reflection-area').innerHTML = [
-    '<div class="ai-box">',
-    '<div class="ai-label">Your reflection on ' + FACTORS[idx].name + '</div>',
-    paras,
-    '</div>',
-    '<div class="btn-row" style="margin-top:16px;">' + nextBtn + '</div>'
-  ].join('');
-
-  if (idx === 2) {
-    el('synth-btn').addEventListener('click', function() { step = 4; render(); scrollTop(); });
+  if (isLast) {
+    qs('synthbtn').onclick = function() { go(4); };
   } else {
-    el('next-btn').addEventListener('click', function() { step++; render(); scrollTop(); });
+    qs('nextbtn').onclick = function() { go(state.step + 1); };
   }
 }
 
-function showSynthesis() {
-  root().innerHTML = [
-    '<div class="synth-card">',
-    '<div class="synth-label">Your complete picture</div>',
-    '<h2>Bringing it together...</h2>',
-    '<div class="dots" style="margin-top:8px;"><span style="background:rgba(255,255,255,0.4)"></span><span style="background:rgba(255,255,255,0.4)"></span><span style="background:rgba(255,255,255,0.4)"></span></div>',
-    '</div>'
-  ].join('');
+function drawSynth(r) {
+  r.innerHTML =
+    '<div class="synth-card"><div class="synth-label">Your complete picture</div>' +
+    '<h2>Bringing it together...</h2>' +
+    '<div class="dots" style="margin-top:8px;">' +
+    '<span style="background:rgba(255,255,255,0.4)"></span>' +
+    '<span style="background:rgba(255,255,255,0.4)"></span>' +
+    '<span style="background:rgba(255,255,255,0.4)"></span>' +
+    '</div></div>';
 
-  var prompt = 'You are a thoughtful career coach trained in the Factors of Career Choice framework, developed by Tyler Blackwell and his father Richard Blackwell PhD.\n\nYou have just completed a three-part reflection covering:\n1. Abilities\n2. Skills\n3. Family\n\nABILITIES: ' + (saved['abilities'] || 'Not provided') + '\n\nSKILLS: ' + (saved['skills'] || 'Not provided') + '\n\nFAMILY: ' + (saved['family'] || 'Not provided') + '\n\nSynthesize these into a meaningful integrated reflection. Look for the thread running through all three, any tensions worth naming, and what becomes visible together that was not visible separately. Write 3-4 paragraphs in warm intelligent prose. No lists. Be specific. End with one honest generous observation about who they are and where they might find most meaning. Keep under 300 words.';
+  var prompt =
+    'You are a thoughtful career coach trained in the Factors of Career Choice framework, ' +
+    'developed by Tyler Blackwell and his father Richard Blackwell PhD.\n\n' +
+    'You have completed a three-part reflection covering Abilities, Skills, and Family.\n\n' +
+    'ABILITIES: ' + (state.saved['abilities'] || 'Not provided') + '\n\n' +
+    'SKILLS: ' + (state.saved['skills'] || 'Not provided') + '\n\n' +
+    'FAMILY: ' + (state.saved['family'] || 'Not provided') + '\n\n' +
+    'Synthesize these into a meaningful integrated reflection. Find the thread running through all three, ' +
+    'name any tensions worth noting, and show what becomes visible together that was not visible separately. ' +
+    'Write 3-4 paragraphs in warm intelligent prose. No lists. Be specific to what they shared. ' +
+    'End with one honest generous observation about who they are and where they might find most meaning. ' +
+    'Keep under 300 words.';
 
   fetch(PROXY, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-6',
       max_tokens: 1000,
       messages: [{ role: 'user', content: prompt }]
     })
@@ -312,56 +320,46 @@ function showSynthesis() {
   .then(function(res) { return res.json(); })
   .then(function(data) {
     if (data.error) throw new Error(JSON.stringify(data.error));
-    var text = data.content && data.content[0] && data.content[0].text;
-    if (!text) throw new Error('No content');
-    var paras = text.split('\n\n').map(function(p) {
-      return '<p>' + p.replace(/\n/g, '<br>') + '</p>';
-    }).join('');
+    var txt = data.content && data.content[0] && data.content[0].text;
+    if (!txt) throw new Error('No content');
 
-    root().innerHTML = [
-      '<div class="synth-card">',
-      '<div class="synth-label">Your synthesis &nbsp;&middot;&nbsp; Three factors explored</div>',
-      '<h2>What your answers reveal</h2>',
-      '<div class="synth-body">' + paras + '</div>',
-      '</div>',
-      '<div class="cta">',
-      '<h3>This is just the beginning.</h3>',
-      '<p>You have explored three of the seven Factors of Career Choice. The full framework adds Goals, Interests, Values, and Developmental Stage.</p>',
-      '<div class="tags">',
-      '<div class="tag done">&#10003; Abilities</div>',
-      '<div class="tag done">&#10003; Skills</div>',
-      '<div class="tag done">&#10003; Family</div>',
-      '<div class="tag">Interests</div>',
-      '<div class="tag">Values</div>',
-      '<div class="tag">Goals</div>',
-      '<div class="tag">Developmental Stage</div>',
-      '</div>',
-      '<p style="font-style:italic;color:#8a9aaa;margin-bottom:24px;">The full career coaching app is in development. Follow Layers Not Linear to be first to know when it launches.</p>',
-      '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">',
-      '<button class="btn btn-primary" id="sub-btn">Follow Layers Not Linear</button>',
-      '<button class="btn btn-ghost" id="restart-btn">Start over</button>',
-      '</div>',
-      '</div>'
-    ].join('');
+    r.innerHTML =
+      '<div class="synth-card">' +
+      '<div class="synth-label">Your synthesis &middot; Three factors explored</div>' +
+      '<h2>What your answers reveal</h2>' +
+      '<div class="synth-body">' + paras(txt) + '</div>' +
+      '</div>' +
+      '<div class="cta">' +
+      '<h3>This is just the beginning.</h3>' +
+      '<p>You have explored three of the seven Factors of Career Choice. The full framework adds Goals, Interests, Values, and Developmental Stage.</p>' +
+      '<div class="tags">' +
+      '<div class="tag done">&#10003; Abilities</div>' +
+      '<div class="tag done">&#10003; Skills</div>' +
+      '<div class="tag done">&#10003; Family</div>' +
+      '<div class="tag">Interests</div>' +
+      '<div class="tag">Values</div>' +
+      '<div class="tag">Goals</div>' +
+      '<div class="tag">Developmental Stage</div>' +
+      '</div>' +
+      '<p style="font-style:italic;color:#8a9aaa;margin-bottom:24px;">The full career coaching app is in development. Follow Layers Not Linear to be first to know when it launches.</p>' +
+      '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">' +
+      '<button id="subbtn" class="btn btn-primary">Follow Layers Not Linear</button>' +
+      '<button id="restartbtn" class="btn btn-ghost">Start over</button>' +
+      '</div></div>';
 
-    el('sub-btn').addEventListener('click', function() { window.open('https://layersnotlinear.substack.com', '_blank'); });
-    el('restart-btn').addEventListener('click', function() { step = 0; saved = {}; reflections = {}; render(); scrollTop(); });
-    scrollTop();
+    qs('subbtn').onclick = function() { window.open('https://layersnotlinear.substack.com', '_blank'); };
+    qs('restartbtn').onclick = function() { state = { step: 0, saved: {}, reflections: {} }; draw(); window.scrollTo(0,0); };
+    window.scrollTo(0, 0);
   })
   .catch(function(err) {
-    root().innerHTML = [
-      '<div class="card">',
-      '<p>Unable to generate synthesis: ' + err.message + '</p>',
-      '<div class="btn-row"><button class="btn btn-ghost" id="back-btn">Back</button></div>',
-      '</div>'
-    ].join('');
-    el('back-btn').addEventListener('click', function() { step = 3; render(); scrollTop(); });
+    r.innerHTML =
+      '<div class="card"><p>Unable to generate synthesis: ' + err.message + '</p>' +
+      '<div class="btn-row"><button id="backbtn" class="btn btn-ghost">Back</button></div></div>';
+    qs('backbtn').onclick = function() { go(3); };
   });
 }
 
-function scrollTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-
-render();
+draw();
 </script>
 </body>
 </html>
