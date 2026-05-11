@@ -3,407 +3,363 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Factors of Career Choice — A Taster</title>
+<title>Factors of Career Choice</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --navy: #1B3A5C; --navy-dark: #0F2640; --navy-light: #244d7a;
-    --gold: #C9A84C; --gold-light: #E8C878;
-    --cream: #F8F4EE; --cream-dark: #EDE7DC;
-    --text: #1a1a2e; --text-muted: #5a6a7e; --white: #ffffff;
-    --shadow: 0 4px 32px rgba(27,58,92,0.12);
-    --shadow-lg: 0 16px 64px rgba(27,58,92,0.18);
-  }
-  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; overflow-x: hidden; }
-  body::before {
-    content: ''; position: fixed; inset: 0;
-    background-image: radial-gradient(ellipse at 20% 50%, rgba(27,58,92,0.04) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.06) 0%, transparent 50%);
-    pointer-events: none; z-index: 0;
-  }
-  .app { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
-  .header { padding: 48px 0 40px; text-align: center; animation: fadeDown 0.8s ease both; }
-  .brand { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
-  .header h1 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 5vw, 40px); font-weight: 400; color: var(--navy-dark); line-height: 1.2; margin-bottom: 12px; }
-  .header h1 em { font-style: italic; color: var(--navy); }
-  .header p { font-size: 15px; color: var(--text-muted); line-height: 1.65; max-width: 480px; margin: 0 auto; }
-  .gold-line { width: 40px; height: 2px; background: var(--gold); margin: 20px auto 0; border-radius: 2px; }
-  .factor-pills { display: flex; gap: 8px; justify-content: center; margin: 28px 0; flex-wrap: wrap; }
-  .pill { padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 500; letter-spacing: 0.04em; transition: all 0.3s ease; }
-  .pill.active { background: var(--navy); color: var(--white); }
-  .pill.upcoming { background: transparent; color: var(--text-muted); border: 1.5px solid var(--cream-dark); }
-  .pill.done { background: var(--gold); color: var(--navy-dark); }
-  .progress-wrap { margin-bottom: 32px; }
-  .progress-bar { height: 3px; background: var(--cream-dark); border-radius: 2px; overflow: hidden; }
-  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--navy), var(--gold)); border-radius: 2px; transition: width 0.6s cubic-bezier(0.4,0,0.2,1); }
-  .card { background: var(--white); border-radius: 20px; padding: 40px; box-shadow: var(--shadow); margin-bottom: 20px; animation: fadeUp 0.6s ease both; border: 1px solid rgba(201,168,76,0.1); }
-  .card-label { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; display: block; }
-  .card h2 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: var(--navy-dark); margin-bottom: 10px; line-height: 1.3; }
-  .card .sub-prompt { font-size: 13px; color: var(--text-muted); font-style: italic; margin-bottom: 20px; line-height: 1.5; }
-  textarea { width: 100%; min-height: 130px; padding: 16px 18px; border: 1.5px solid var(--cream-dark); border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--text); background: var(--cream); resize: vertical; transition: border-color 0.2s, box-shadow 0.2s; line-height: 1.6; outline: none; }
-  textarea:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(27,58,92,0.08); background: var(--white); }
-  textarea::placeholder { color: #b0b8c4; }
-  .char-count { font-size: 12px; color: var(--text-muted); text-align: right; margin-top: 6px; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; border: none; transition: all 0.2s ease; letter-spacing: 0.02em; }
-  .btn-primary { background: var(--navy); color: var(--white); box-shadow: 0 4px 16px rgba(27,58,92,0.25); }
-  .btn-primary:hover:not(:disabled) { background: var(--navy-light); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(27,58,92,0.3); }
-  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
-  .btn-ghost { background: transparent; color: var(--text-muted); border: 1.5px solid var(--cream-dark); }
-  .btn-ghost:hover { border-color: var(--navy); color: var(--navy); }
-  .btn-gold { background: var(--gold); color: var(--navy-dark); box-shadow: 0 4px 16px rgba(201,168,76,0.3); }
-  .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
-  .btn-row { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
-  .ai-response { background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%); border-radius: 16px; padding: 28px 32px; color: var(--white); margin-top: 20px; position: relative; overflow: hidden; }
-  .ai-response::before { content: ''; position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; border-radius: 50%; background: rgba(201,168,76,0.08); }
-  .ai-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-  .ai-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2s infinite; }
-  .ai-response p { font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.9); margin-bottom: 12px; }
-  .ai-response p:last-child { margin-bottom: 0; }
-  .synthesis-card { background: linear-gradient(135deg, var(--navy-dark), var(--navy-light)); border-radius: 20px; padding: 44px 40px; color: var(--white); box-shadow: var(--shadow-lg); position: relative; overflow: hidden; animation: fadeUp 0.6s ease both; }
-  .synthesis-card::before { content: ''; position: absolute; bottom: -60px; right: -60px; width: 240px; height: 240px; border-radius: 50%; background: rgba(201,168,76,0.07); }
-  .synthesis-card::after { content: ''; position: absolute; top: -40px; left: -40px; width: 160px; height: 160px; border-radius: 50%; background: rgba(201,168,76,0.05); }
-  .synth-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; position: relative; z-index: 1; }
-  .synthesis-card h2 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 400; color: var(--white); margin-bottom: 20px; line-height: 1.3; position: relative; z-index: 1; }
-  .synth-body { font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.85); position: relative; z-index: 1; }
-  .synth-body p { margin-bottom: 16px; }
-  .synth-body p:last-child { margin-bottom: 0; }
-  .cta-section { background: var(--white); border-radius: 20px; padding: 40px; text-align: center; box-shadow: var(--shadow); margin-top: 20px; border: 1px solid rgba(201,168,76,0.15); }
-  .cta-section h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--navy-dark); margin-bottom: 12px; }
-  .cta-section p { font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: 24px; max-width: 400px; margin-left: auto; margin-right: auto; }
-  .factor-list { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px; }
-  .factor-tag { padding: 6px 14px; background: var(--cream); border-radius: 20px; font-size: 12px; color: var(--navy); font-weight: 500; border: 1px solid var(--cream-dark); }
-  .factor-tag.preview { background: var(--navy); color: var(--white); border-color: var(--navy); }
-  .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; }
-  .typing { display: flex; gap: 4px; align-items: center; padding: 8px 0; }
-  .typing span { width: 6px; height: 6px; background: rgba(255,255,255,0.5); border-radius: 50%; animation: bounce 1.2s infinite; }
-  .typing span:nth-child(2) { animation-delay: 0.2s; }
-  .typing span:nth-child(3) { animation-delay: 0.4s; }
-  .welcome-card { background: var(--white); border-radius: 20px; padding: 48px 40px; box-shadow: var(--shadow); text-align: center; animation: fadeUp 0.6s ease both; border: 1px solid rgba(201,168,76,0.1); }
-  .welcome-icon { width: 64px; height: 64px; background: linear-gradient(135deg, var(--navy-dark), var(--navy)); border-radius: 18px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 28px; }
-  .welcome-card h2 { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--navy-dark); margin-bottom: 12px; }
-  .welcome-card p { font-size: 15px; color: var(--text-muted); line-height: 1.65; margin-bottom: 8px; max-width: 420px; margin-left: auto; margin-right: auto; }
-  .what-to-expect { background: var(--cream); border-radius: 12px; padding: 20px 24px; margin: 24px 0; text-align: left; }
-  .what-to-expect h4 { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
-  .expect-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; font-size: 14px; color: var(--text-muted); }
-  .expect-item span:first-child { color: var(--navy); font-weight: 500; flex-shrink: 0; }
-  .disclaimer { text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 32px; line-height: 1.6; opacity: 0.7; }
-  @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  @keyframes bounce { 0%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-6px); } }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B3A5C;--navy-dark:#0F2640;--navy-light:#244d7a;
+  --gold:#C9A84C;--gold-light:#E8C878;
+  --cream:#F8F4EE;--cream-dark:#EDE7DC;
+  --text:#1a1a2e;--text-muted:#5a6a7e;--white:#ffffff;
+  --shadow:0 4px 32px rgba(27,58,92,0.12);
+  --shadow-lg:0 16px 64px rgba(27,58,92,0.18);
+}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+.app{max-width:680px;margin:0 auto;padding:0 24px 80px}
+.header{padding:48px 0 40px;text-align:center}
+.brand{font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block}
+.header h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,40px);font-weight:400;color:var(--navy-dark);line-height:1.2;margin-bottom:12px}
+.header h1 em{font-style:italic;color:var(--navy)}
+.header p{font-size:15px;color:var(--text-muted);line-height:1.65;max-width:480px;margin:0 auto}
+.gold-line{width:40px;height:2px;background:var(--gold);margin:20px auto 0;border-radius:2px}
+.pills{display:flex;gap:8px;justify-content:center;margin:28px 0;flex-wrap:wrap}
+.pill{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:500;border:1.5px solid transparent}
+.pill.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.pill.done{background:var(--gold);color:var(--navy-dark);border-color:var(--gold)}
+.pill.upcoming{color:var(--text-muted);border-color:var(--cream-dark)}
+.progress-wrap{margin-bottom:32px}
+.progress-bar{height:3px;background:var(--cream-dark);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--navy),var(--gold));border-radius:2px;transition:width 0.6s ease}
+.card{background:var(--white);border-radius:20px;padding:40px;box-shadow:var(--shadow);margin-bottom:20px;border:1px solid rgba(201,168,76,0.1)}
+.card-label{font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block}
+.card h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:var(--navy-dark);margin-bottom:10px;line-height:1.3}
+.subprompt{font-size:13px;color:var(--text-muted);font-style:italic;margin-bottom:20px;line-height:1.5}
+textarea{width:100%;min-height:130px;padding:16px 18px;border:1.5px solid var(--cream-dark);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--text);background:var(--cream);resize:vertical;line-height:1.6;outline:none;transition:border-color 0.2s,box-shadow 0.2s}
+textarea:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(27,58,92,0.08);background:var(--white)}
+textarea::placeholder{color:#b0b8c4}
+.char-count{font-size:12px;color:var(--text-muted);text-align:right;margin-top:6px}
+.btn-row{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;cursor:pointer;border:none;transition:all 0.2s ease}
+.btn-primary{background:var(--navy);color:var(--white);box-shadow:0 4px 16px rgba(27,58,92,0.25)}
+.btn-primary:hover{background:var(--navy-light)}
+.btn-primary:disabled{opacity:0.4;cursor:not-allowed}
+.btn-ghost{background:transparent;color:var(--text-muted);border:1.5px solid var(--cream-dark)}
+.btn-ghost:hover{border-color:var(--navy);color:var(--navy)}
+.btn-gold{background:var(--gold);color:var(--navy-dark);box-shadow:0 4px 16px rgba(201,168,76,0.3)}
+.btn-gold:hover{background:var(--gold-light)}
+.ai-box{background:linear-gradient(135deg,var(--navy-dark),var(--navy));border-radius:16px;padding:28px 32px;color:var(--white);margin-top:20px}
+.ai-label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.ai-box p{font-size:15px;line-height:1.75;color:rgba(255,255,255,0.9);margin-bottom:12px}
+.ai-box p:last-child{margin-bottom:0}
+.synth-card{background:linear-gradient(135deg,var(--navy-dark),var(--navy-light));border-radius:20px;padding:44px 40px;color:var(--white);box-shadow:var(--shadow-lg)}
+.synth-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.synth-card h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:400;color:var(--white);margin-bottom:20px;line-height:1.3}
+.synth-body{font-size:15px;line-height:1.8;color:rgba(255,255,255,0.85)}
+.synth-body p{margin-bottom:16px}
+.cta{background:var(--white);border-radius:20px;padding:40px;text-align:center;box-shadow:var(--shadow);margin-top:20px;border:1px solid rgba(201,168,76,0.15)}
+.cta h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--navy-dark);margin-bottom:12px}
+.cta p{font-size:14px;color:var(--text-muted);line-height:1.65;margin-bottom:24px;max-width:400px;margin-left:auto;margin-right:auto}
+.tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:24px}
+.tag{padding:6px 14px;background:var(--cream);border-radius:20px;font-size:12px;color:var(--navy);font-weight:500;border:1px solid var(--cream-dark)}
+.tag.done{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.welcome{background:var(--white);border-radius:20px;padding:48px 40px;box-shadow:var(--shadow);text-align:center;border:1px solid rgba(201,168,76,0.1)}
+.welcome-icon{width:64px;height:64px;background:linear-gradient(135deg,var(--navy-dark),var(--navy));border-radius:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:28px}
+.welcome h2{font-family:'Playfair Display',serif;font-size:24px;color:var(--navy-dark);margin-bottom:12px}
+.welcome p{font-size:15px;color:var(--text-muted);line-height:1.65;margin-bottom:8px;max-width:420px;margin-left:auto;margin-right:auto}
+.expect-box{background:var(--cream);border-radius:12px;padding:20px 24px;margin:24px 0;text-align:left}
+.expect-box h4{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-weight:500}
+.expect-item{display:flex;gap:10px;margin-bottom:8px;font-size:14px;color:var(--text-muted)}
+.expect-item b{color:var(--navy);flex-shrink:0}
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:white;border-radius:50%;animation:spin 0.8s linear infinite}
+.dots{display:flex;gap:4px;padding:8px 0}
+.dots span{width:6px;height:6px;background:rgba(255,255,255,0.5);border-radius:50%;animation:bounce 1.2s infinite}
+.dots span:nth-child(2){animation-delay:0.2s}
+.dots span:nth-child(3){animation-delay:0.4s}
+.disclaimer{text-align:center;font-size:12px;color:var(--text-muted);margin-top:32px;line-height:1.6;opacity:0.7}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
 </style>
 </head>
 <body>
 <div class="app">
   <div class="header">
-    <span class="brand">Layers Not Linear &nbsp;·&nbsp; Tyler Blackwell</span>
-    <h1>Factors of Career Choice<em>©</em></h1>
-    <p>A taster. Three of seven factors, powered by AI. A glimpse of what's coming.</p>
+    <span class="brand">Layers Not Linear &nbsp;&middot;&nbsp; Tyler Blackwell</span>
+    <h1>Factors of Career Choice<em>&copy;</em></h1>
+    <p>A taster. Three of seven factors, powered by AI. A glimpse of what is coming.</p>
     <div class="gold-line"></div>
   </div>
-  <div id="main"></div>
+  <div id="app-root"></div>
   <p class="disclaimer">
-    This is a preview of a tool in development. Built on the Factors of Career Choice© framework by Tyler Blackwell.<br>
+    Preview of a tool in development. Built on the Factors of Career Choice&copy; framework by Tyler Blackwell.<br>
     Your responses are not stored. This conversation exists only in this session.
   </p>
 </div>
 
 <script>
-const PROXY_URL = 'https://career-coach-proxy.tcblackwell.workers.dev';
+var PROXY = 'https://career-coach-proxy.tcblackwell.workers.dev';
 
-const FACTORS = [
+var FACTORS = [
   {
     id: 'abilities',
-    label: 'Factor 1 of 3',
+    num: 'Factor 1 of 3',
     name: 'Abilities',
-    question: 'What are you naturally good at — before anyone taught you?',
-    subprompt: 'Think about the things that have always come easily to you. Not skills you worked hard to build, but the capacities that were already there. The way you think, connect ideas, listen, lead, make things, see patterns. What do people ask for your help with, unprompted?',
-    placeholder: "Take your time. There's no right answer here. Just write what comes to mind...",
-    systemContext: 'You are a thoughtful career coach trained in the Factors of Career Choice framework. The user is responding to a question about their natural Abilities — what they are innately oriented toward before anyone taught them. Your role is to reflect back what you hear, name the ability underneath their words, and offer one insight that helps them see themselves more clearly. Be warm, specific, and grounded. Do not be generic. Do not use lists. Write 2-3 short paragraphs in flowing prose. End with one question that deepens their reflection. Keep your response under 200 words.'
+    question: 'What are you naturally good at &mdash; before anyone taught you?',
+    subprompt: 'Think about what has always come easily to you. Not skills you worked hard to build, but the capacities that were already there. The way you think, connect ideas, listen, lead, make things, see patterns. What do people ask for your help with, unprompted?',
+    placeholder: 'Take your time. There is no right answer. Just write what comes to mind...',
+    system: 'You are a thoughtful career coach trained in the Factors of Career Choice framework. The user is responding to a question about their natural Abilities. Reflect back what you hear, name the ability underneath their words, and offer one insight that helps them see themselves more clearly. Be warm, specific, and grounded. Do not use lists. Write 2-3 short paragraphs in flowing prose. End with one question that deepens their reflection. Keep under 200 words.'
   },
   {
     id: 'skills',
-    label: 'Factor 2 of 3',
+    num: 'Factor 2 of 3',
     name: 'Skills',
-    question: 'Which skills did you choose — and which chose you?',
-    subprompt: "Skills are built, not born. Some you pursued because you wanted to. Others you developed because circumstance required it. Think about the skills you've accumulated across your life and career. Which ones energize you when you use them? Which ones feel like obligation?",
+    question: 'Which skills did you choose &mdash; and which chose you?',
+    subprompt: 'Skills are built, not born. Some you pursued because you wanted to. Others developed because circumstance required it. Which ones energize you when you use them? Which feel like obligation?',
     placeholder: 'Think about skills you use every day versus skills you are genuinely proud of...',
-    systemContext: 'You are a thoughtful career coach trained in the Factors of Career Choice framework. The user is reflecting on their Skills — the things they have learned to do, distinguishing between skills chosen by desire and skills built by obligation. Your role is to reflect what you hear, name the distinction you observe in their answer, and help them see which skills are aligned with who they actually are. Be warm, precise, and human. Do not use lists or bullet points. Write 2-3 short paragraphs. End with one question. Keep under 200 words.'
+    system: 'You are a thoughtful career coach trained in the Factors of Career Choice framework. The user is reflecting on their Skills. Reflect what you hear, name the distinction between chosen and obligated skills, and help them see which skills align with who they actually are. Be warm and precise. No lists. Write 2-3 short paragraphs. End with one question. Keep under 200 words.'
   },
   {
     id: 'family',
-    label: 'Factor 3 of 3',
+    num: 'Factor 3 of 3',
     name: 'Family',
-    question: 'What did your family teach you about work — without ever saying it out loud?',
-    subprompt: "Your family of origin handed you a script before you knew you were learning one. What did yours say about ambition, money, stability, risk, success, or what kinds of work were acceptable? And how has the family you've built — or chosen — shaped the career decisions you've made since?",
+    question: 'What did your family teach you about work &mdash; without ever saying it out loud?',
+    subprompt: 'Your family of origin handed you a script before you knew you were learning one. What did yours say about ambition, money, stability, risk, or what kinds of work were acceptable? How has the family you have built shaped your career decisions since?',
     placeholder: 'This one runs deep. Write whatever surfaces, even if it surprises you...',
-    systemContext: 'You are a thoughtful career coach trained in the Factors of Career Choice framework, which was developed with Richard Blackwell PhD, a psychologist with 50 years of practice. The user is reflecting on the Family factor — specifically the unspoken scripts their family of origin handed them, and how their family of choice has shaped their career decisions. Your role is to reflect what you hear with care and precision. Name the pattern or script you observe. Help them see what was inherited versus what was chosen. Be warm, respectful, and honest. This is a sensitive factor. Do not be clinical. Write 2-3 short paragraphs in flowing prose. End with one gentle, deepening question. Keep under 220 words.'
+    system: 'You are a thoughtful career coach trained in the Factors of Career Choice framework, developed with Richard Blackwell PhD, a psychologist with 50 years of practice. The user is reflecting on the Family factor. Name the pattern or script you observe. Help them see what was inherited versus what was chosen. Be warm, respectful, and honest. Do not be clinical. Write 2-3 short paragraphs in flowing prose. End with one gentle question. Keep under 220 words.'
   }
 ];
 
-let currentStep = 0;
-let responses = {};
-let reflections = {};
+var step = 0;
+var saved = {};
+var reflections = {};
+
+function el(id) { return document.getElementById(id); }
+function root() { return el('app-root'); }
 
 function render() {
-  const main = document.getElementById('main');
-  if (currentStep === 0) renderWelcome(main);
-  else if (currentStep >= 1 && currentStep <= 3) renderFactor(main, currentStep - 1);
-  else if (currentStep === 4) renderSynthesis(main);
+  if (step === 0) showWelcome();
+  else if (step >= 1 && step <= 3) showFactor(step - 1);
+  else showSynthesis();
 }
 
-function renderWelcome(container) {
-  container.innerHTML = `
-    <div class="welcome-card">
-      <div class="welcome-icon">🧭</div>
-      <h2>Where did your career come from?</h2>
-      <p>Most career advice tells you what to do next. This asks something different: who are you, actually, and what shaped you?</p>
-      <p>In the next few minutes, you will reflect on three of the seven Factors of Career Choice. You will get a real AI reflection after each one.</p>
-      <div class="what-to-expect">
-        <h4>What to expect</h4>
-        <div class="expect-item"><span>3</span> short reflective questions</div>
-        <div class="expect-item"><span>AI</span> responses grounded in behavioral science and career research</div>
-        <div class="expect-item"><span>~8</span> minutes, no account required</div>
-      </div>
-      <button class="btn btn-primary" onclick="startJourney()" style="width:100%;justify-content:center;font-size:15px;padding:16px;">
-        Begin &nbsp;→
-      </button>
-    </div>
-  `;
+function showWelcome() {
+  root().innerHTML = [
+    '<div class="welcome">',
+    '<div class="welcome-icon">&#x1F9ED;</div>',
+    '<h2>Where did your career come from?</h2>',
+    '<p>Most career advice tells you what to do next. This asks something different: who are you, and what shaped you?</p>',
+    '<p>You will reflect on three of the seven Factors of Career Choice and get a real AI reflection after each one.</p>',
+    '<div class="expect-box">',
+    '<h4>What to expect</h4>',
+    '<div class="expect-item"><b>3</b><span>short reflective questions</span></div>',
+    '<div class="expect-item"><b>AI</b><span>responses grounded in behavioral science</span></div>',
+    '<div class="expect-item"><b>~8</b><span>minutes, no account required</span></div>',
+    '</div>',
+    '<button class="btn btn-primary" id="begin-btn" style="width:100%;justify-content:center;font-size:15px;padding:16px;">Begin &rarr;</button>',
+    '</div>'
+  ].join('');
+  el('begin-btn').addEventListener('click', function() { step = 1; render(); scrollTop(); });
 }
 
-function renderFactor(container, index) {
-  const factor = FACTORS[index];
-  const progress = (index / 3) * 100;
+function showFactor(idx) {
+  var f = FACTORS[idx];
+  var pct = (idx / 3) * 100;
 
-  container.innerHTML = `
-    <div class="factor-pills">
-      ${FACTORS.map((f, i) => `
-        <div class="pill ${i < index ? 'done' : i === index ? 'active' : 'upcoming'}">
-          ${i < index ? '✓ ' : ''}${f.name}
-        </div>
-      `).join('')}
-    </div>
-    <div class="progress-wrap">
-      <div class="progress-bar">
-        <div class="progress-fill" style="width:${progress}%"></div>
-      </div>
-    </div>
-    <div class="card">
-      <span class="card-label">${factor.label} &nbsp;·&nbsp; ${factor.name}</span>
-      <h2>${factor.question}</h2>
-      <p class="sub-prompt">${factor.subprompt}</p>
-      <textarea id="response-input" placeholder="${factor.placeholder}" rows="5"></textarea>
-      <div class="char-count" id="char-count">0 characters — type at least 20 to continue</div>
-      <div class="btn-row">
-        ${index > 0 ? '<button class="btn btn-ghost" onclick="goBack()">← Back</button>' : ''}
-        <button class="btn btn-primary" id="submit-btn" onclick="submitResponse(' + index + ')" disabled>
-          Get reflection →
-        </button>
-      </div>
-    </div>
-    <div id="reflection-area"></div>
-  `;
-
-  // Fix: inline the index into the onclick properly
-  document.getElementById('submit-btn').onclick = function() { submitResponse(index); };
-
-  const input = document.getElementById('response-input');
-  const btn = document.getElementById('submit-btn');
-  const charCount = document.getElementById('char-count');
-
-  // Restore previous response if exists
-  if (responses[factor.id]) {
-    input.value = responses[factor.id];
-    const len = input.value.trim().length;
-    charCount.textContent = len + ' characters';
-    btn.disabled = false;
-    if (reflections[factor.id]) {
-      showReflection(reflections[factor.id], index);
-    }
+  var pillsHtml = '';
+  for (var i = 0; i < FACTORS.length; i++) {
+    var cls = i < idx ? 'done' : i === idx ? 'active' : 'upcoming';
+    var label = i < idx ? ('&#10003; ' + FACTORS[i].name) : FACTORS[i].name;
+    pillsHtml += '<div class="pill ' + cls + '">' + label + '</div>';
   }
 
-  input.addEventListener('input', function() {
-    const len = this.value.trim().length;
-    charCount.textContent = len + ' characters' + (len < 20 ? ' — type at least 20 to continue' : '');
+  root().innerHTML = [
+    '<div class="pills">' + pillsHtml + '</div>',
+    '<div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:' + pct + '%"></div></div></div>',
+    '<div class="card">',
+    '<span class="card-label">' + f.num + ' &nbsp;&middot;&nbsp; ' + f.name + '</span>',
+    '<h2>' + f.question + '</h2>',
+    '<p class="subprompt">' + f.subprompt + '</p>',
+    '<textarea id="ta" placeholder="' + f.placeholder + '" rows="5"></textarea>',
+    '<div class="char-count" id="cc">0 characters &mdash; type at least 20 to continue</div>',
+    '<div class="btn-row">',
+    idx > 0 ? '<button class="btn btn-ghost" id="back-btn">&larr; Back</button>' : '',
+    '<button class="btn btn-primary" id="submit-btn" disabled>Get reflection &rarr;</button>',
+    '</div>',
+    '</div>',
+    '<div id="reflection-area"></div>'
+  ].join('');
+
+  var ta = el('ta');
+  var btn = el('submit-btn');
+  var cc = el('cc');
+
+  if (saved[f.id]) {
+    ta.value = saved[f.id];
+    var l = ta.value.trim().length;
+    cc.textContent = l + ' characters';
+    btn.disabled = false;
+    if (reflections[f.id]) showReflection(reflections[f.id], idx);
+  }
+
+  ta.addEventListener('input', function() {
+    var len = ta.value.trim().length;
+    cc.textContent = len + ' characters' + (len < 20 ? ' \u2014 type at least 20 to continue' : '');
     btn.disabled = len < 20;
+  });
+
+  btn.addEventListener('click', function() { doSubmit(idx); });
+
+  if (idx > 0) {
+    el('back-btn').addEventListener('click', function() { step--; render(); scrollTop(); });
+  }
+}
+
+function doSubmit(idx) {
+  var f = FACTORS[idx];
+  var ta = el('ta');
+  var text = ta.value.trim();
+  if (text.length < 20) return;
+
+  saved[f.id] = text;
+
+  var btn = el('submit-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Reflecting...';
+  ta.disabled = true;
+
+  el('reflection-area').innerHTML = [
+    '<div class="ai-box">',
+    '<div class="ai-label">Reflecting on your ' + f.name + '</div>',
+    '<div class="dots"><span></span><span></span><span></span></div>',
+    '</div>'
+  ].join('');
+
+  fetch(PROXY, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      system: f.system,
+      messages: [{ role: 'user', content: text }]
+    })
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    if (data.error) throw new Error(JSON.stringify(data.error));
+    var reflection = data.content && data.content[0] && data.content[0].text;
+    if (!reflection) throw new Error('No content in response');
+    reflections[f.id] = reflection;
+    showReflection(reflection, idx);
+  })
+  .catch(function(err) {
+    el('reflection-area').innerHTML = [
+      '<div class="ai-box">',
+      '<div class="ai-label">Something went wrong</div>',
+      '<p>' + err.message + '</p>',
+      '</div>'
+    ].join('');
+    btn.disabled = false;
+    btn.innerHTML = 'Get reflection &rarr;';
+    ta.disabled = false;
   });
 }
 
-async function submitResponse(index) {
-  const factor = FACTORS[index];
-  const input = document.getElementById('response-input');
-  const userText = input.value.trim();
+function showReflection(text, idx) {
+  var paras = text.split('\n\n').map(function(p) {
+    return '<p>' + p.replace(/\n/g, '<br>') + '</p>';
+  }).join('');
 
-  if (!userText || userText.length < 20) return;
+  var nextBtn = idx === 2
+    ? '<button class="btn btn-gold" id="synth-btn" style="flex:1;justify-content:center;">See your full picture &rarr;</button>'
+    : '<button class="btn btn-primary" id="next-btn" style="flex:1;justify-content:center;">Continue to ' + FACTORS[idx + 1].name + ' &rarr;</button>';
 
-  responses[factor.id] = userText;
+  el('reflection-area').innerHTML = [
+    '<div class="ai-box">',
+    '<div class="ai-label">Your reflection on ' + FACTORS[idx].name + '</div>',
+    paras,
+    '</div>',
+    '<div class="btn-row" style="margin-top:16px;">' + nextBtn + '</div>'
+  ].join('');
 
-  const btn = document.getElementById('submit-btn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> Reflecting...';
-  input.disabled = true;
-
-  document.getElementById('reflection-area').innerHTML = `
-    <div class="ai-response">
-      <div class="ai-label">Reflecting on your ${factor.name}</div>
-      <div class="typing"><span></span><span></span><span></span></div>
-    </div>
-  `;
-
-  try {
-    const res = await fetch(PROXY_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: factor.systemContext,
-        messages: [{ role: 'user', content: userText }]
-      })
-    });
-
-    const data = await res.json();
-
-    if (data.error) {
-      throw new Error(data.error.message || 'API error');
-    }
-
-    const reflection = data.content?.[0]?.text || 'Something went wrong. Please try again.';
-    reflections[factor.id] = reflection;
-    showReflection(reflection, index);
-
-  } catch (err) {
-    document.getElementById('reflection-area').innerHTML = `
-      <div class="ai-response">
-        <div class="ai-label">Connection issue</div>
-        <p>Unable to reach the AI. Please try again in a moment.</p>
-        <p style="font-size:12px;opacity:0.6;margin-top:8px;">${err.message}</p>
-      </div>
-    `;
-    btn.disabled = false;
-    btn.innerHTML = 'Get reflection →';
-    input.disabled = false;
+  if (idx === 2) {
+    el('synth-btn').addEventListener('click', function() { step = 4; render(); scrollTop(); });
+  } else {
+    el('next-btn').addEventListener('click', function() { step++; render(); scrollTop(); });
   }
 }
 
-function showReflection(reflection, index) {
-  const isLast = index === 2;
-  const paragraphs = reflection.split('\n\n').map(p => '<p>' + p.replace(/\n/g, '<br>') + '</p>').join('');
-  const nextBtn = isLast
-    ? '<button class="btn btn-gold" onclick="goToSynthesis()" style="flex:1;justify-content:center;">See your full picture →</button>'
-    : '<button class="btn btn-primary" onclick="nextFactor()" style="flex:1;justify-content:center;">Continue to ' + FACTORS[index + 1].name + ' →</button>';
+function showSynthesis() {
+  root().innerHTML = [
+    '<div class="synth-card">',
+    '<div class="synth-label">Your complete picture</div>',
+    '<h2>Bringing it together...</h2>',
+    '<div class="dots" style="margin-top:8px;"><span style="background:rgba(255,255,255,0.4)"></span><span style="background:rgba(255,255,255,0.4)"></span><span style="background:rgba(255,255,255,0.4)"></span></div>',
+    '</div>'
+  ].join('');
 
-  document.getElementById('reflection-area').innerHTML = `
-    <div class="ai-response">
-      <div class="ai-label">Your reflection on ${FACTORS[index].name}</div>
-      ${paragraphs}
-    </div>
-    <div class="btn-row" style="margin-top:16px;">
-      ${nextBtn}
-    </div>
-  `;
+  var prompt = 'You are a thoughtful career coach trained in the Factors of Career Choice framework, developed by Tyler Blackwell and his father Richard Blackwell PhD.\n\nYou have just completed a three-part reflection covering:\n1. Abilities\n2. Skills\n3. Family\n\nABILITIES: ' + (saved['abilities'] || 'Not provided') + '\n\nSKILLS: ' + (saved['skills'] || 'Not provided') + '\n\nFAMILY: ' + (saved['family'] || 'Not provided') + '\n\nSynthesize these into a meaningful integrated reflection. Look for the thread running through all three, any tensions worth naming, and what becomes visible together that was not visible separately. Write 3-4 paragraphs in warm intelligent prose. No lists. Be specific. End with one honest generous observation about who they are and where they might find most meaning. Keep under 300 words.';
+
+  fetch(PROXY, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      messages: [{ role: 'user', content: prompt }]
+    })
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    if (data.error) throw new Error(JSON.stringify(data.error));
+    var text = data.content && data.content[0] && data.content[0].text;
+    if (!text) throw new Error('No content');
+    var paras = text.split('\n\n').map(function(p) {
+      return '<p>' + p.replace(/\n/g, '<br>') + '</p>';
+    }).join('');
+
+    root().innerHTML = [
+      '<div class="synth-card">',
+      '<div class="synth-label">Your synthesis &nbsp;&middot;&nbsp; Three factors explored</div>',
+      '<h2>What your answers reveal</h2>',
+      '<div class="synth-body">' + paras + '</div>',
+      '</div>',
+      '<div class="cta">',
+      '<h3>This is just the beginning.</h3>',
+      '<p>You have explored three of the seven Factors of Career Choice. The full framework adds Goals, Interests, Values, and Developmental Stage.</p>',
+      '<div class="tags">',
+      '<div class="tag done">&#10003; Abilities</div>',
+      '<div class="tag done">&#10003; Skills</div>',
+      '<div class="tag done">&#10003; Family</div>',
+      '<div class="tag">Interests</div>',
+      '<div class="tag">Values</div>',
+      '<div class="tag">Goals</div>',
+      '<div class="tag">Developmental Stage</div>',
+      '</div>',
+      '<p style="font-style:italic;color:#8a9aaa;margin-bottom:24px;">The full career coaching app is in development. Follow Layers Not Linear to be first to know when it launches.</p>',
+      '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">',
+      '<button class="btn btn-primary" id="sub-btn">Follow Layers Not Linear</button>',
+      '<button class="btn btn-ghost" id="restart-btn">Start over</button>',
+      '</div>',
+      '</div>'
+    ].join('');
+
+    el('sub-btn').addEventListener('click', function() { window.open('https://layersnotlinear.substack.com', '_blank'); });
+    el('restart-btn').addEventListener('click', function() { step = 0; saved = {}; reflections = {}; render(); scrollTop(); });
+    scrollTop();
+  })
+  .catch(function(err) {
+    root().innerHTML = [
+      '<div class="card">',
+      '<p>Unable to generate synthesis: ' + err.message + '</p>',
+      '<div class="btn-row"><button class="btn btn-ghost" id="back-btn">Back</button></div>',
+      '</div>'
+    ].join('');
+    el('back-btn').addEventListener('click', function() { step = 3; render(); scrollTop(); });
+  });
 }
 
-function startJourney() { currentStep = 1; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-function nextFactor() { currentStep++; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-function goBack() { currentStep--; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-
-async function goToSynthesis() {
-  currentStep = 4;
-  const main = document.getElementById('main');
-
-  main.innerHTML = `
-    <div class="synthesis-card">
-      <div class="synth-label">Your complete picture</div>
-      <h2>Bringing it together...</h2>
-      <div class="typing" style="margin-top:8px;">
-        <span style="background:rgba(255,255,255,0.4)"></span>
-        <span style="background:rgba(255,255,255,0.4)"></span>
-        <span style="background:rgba(255,255,255,0.4)"></span>
-      </div>
-    </div>
-  `;
-
-  const summaryPrompt = `You are a thoughtful career coach trained in the Factors of Career Choice framework, developed by Tyler Blackwell and his father Richard Blackwell PhD.
-
-You have just completed a three-part reflection with someone covering:
-1. Abilities (what they are naturally oriented toward)
-2. Skills (what they have built, and whether by desire or obligation)
-3. Family (the scripts and influences that shaped their career choices)
-
-Here are their responses:
-
-ABILITIES: ${responses['abilities'] || 'Not provided'}
-
-SKILLS: ${responses['skills'] || 'Not provided'}
-
-FAMILY: ${responses['family'] || 'Not provided'}
-
-Synthesize these three responses into a meaningful, integrated reflection. Look for the thread that runs through all three, any tensions worth naming, and what becomes visible when you look at all three together. Write 3-4 paragraphs in warm, intelligent prose. No lists. No bullet points. Be specific to what they shared. End with one honest, generous observation about what their answers suggest about who they are and where they might find the most meaning. Keep under 300 words.`;
-
-  try {
-    const res = await fetch(PROXY_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: summaryPrompt }]
-      })
-    });
-
-    const data = await res.json();
-
-    if (data.error) throw new Error(data.error.message || 'API error');
-
-    const synthesis = data.content?.[0]?.text || 'Unable to generate synthesis.';
-    const paragraphs = synthesis.split('\n\n').map(p => '<p>' + p.replace(/\n/g, '<br>') + '</p>').join('');
-
-    main.innerHTML = `
-      <div class="synthesis-card">
-        <div class="synth-label">Your synthesis &nbsp;·&nbsp; Three factors explored</div>
-        <h2>What your answers reveal</h2>
-        <div class="synth-body">${paragraphs}</div>
-      </div>
-      <div class="cta-section">
-        <h3>This is just the beginning.</h3>
-        <p>You have explored three of the seven Factors of Career Choice. The full framework adds Goals, Interests, Values, and Developmental Stage — and the picture gets significantly richer.</p>
-        <div class="factor-list">
-          <div class="factor-tag preview">✓ Abilities</div>
-          <div class="factor-tag preview">✓ Skills</div>
-          <div class="factor-tag preview">✓ Family</div>
-          <div class="factor-tag">Interests</div>
-          <div class="factor-tag">Values</div>
-          <div class="factor-tag">Goals</div>
-          <div class="factor-tag">Developmental Stage</div>
-        </div>
-        <p style="font-style:italic;color:#8a9aaa;margin-bottom:24px;">The full career coaching app is in development. Follow along at Layers Not Linear to be the first to know when it launches.</p>
-        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-          <button class="btn btn-primary" onclick="window.open('https://layersnotlinear.substack.com','_blank')">Follow Layers Not Linear</button>
-          <button class="btn btn-ghost" onclick="restartApp()">Start over</button>
-        </div>
-      </div>
-    `;
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  } catch (err) {
-    main.innerHTML = `
-      <div class="card">
-        <p>Unable to generate synthesis. Please try again.</p>
-        <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">${err.message}</p>
-        <div class="btn-row"><button class="btn btn-ghost" onclick="goBack()">Back</button></div>
-      </div>
-    `;
-  }
-}
-
-function restartApp() {
-  currentStep = 0; responses = {}; reflections = {};
-  render(); window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+function scrollTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
 render();
 </script>
