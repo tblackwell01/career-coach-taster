@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Factors of Career Choice© — Full Experience</title>
+<title>Factors of Career Choice© — Tyler Blackwell & Dr. Richard Blackwell</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -30,8 +30,9 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,46px);font-weight:300;color:var(--navy-dark);line-height:1.1;margin-bottom:10px;letter-spacing:-0.01em}
 .header h1 em{font-style:italic;color:var(--navy)}
 .header h1 sup{font-size:0.5em;vertical-align:super;color:var(--gold)}
-.header-sub{font-size:15px;color:var(--text-muted);line-height:1.65;max-width:460px;margin:0 auto}
-.gold-rule{display:flex;align-items:center;gap:12px;margin:20px auto 0;max-width:160px}
+.header-sub{font-size:15px;color:var(--text-muted);line-height:1.65;max-width:460px;margin:0 auto 8px}
+.header-authors{font-size:12px;color:var(--gold-dim);letter-spacing:0.06em;margin-top:4px}
+.gold-rule{display:flex;align-items:center;gap:12px;margin:16px auto 0;max-width:160px}
 .gold-rule::before,.gold-rule::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
 .gold-rule-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
 
@@ -109,7 +110,6 @@ textarea::placeholder{color:#b8c4d0}
 .factor-tag.done{background:var(--navy);color:var(--white);border-color:var(--navy)}
 .cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 
-/* WELCOME — with diagram image */
 .welcome{background:var(--white);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-md);border:1px solid rgba(201,168,76,0.08)}
 .welcome-diagram{width:100%;display:block;border-bottom:1px solid rgba(201,168,76,0.12)}
 .welcome-body{padding:40px}
@@ -120,7 +120,7 @@ textarea::placeholder{color:#b8c4d0}
 .expect-item-label{font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:4px;font-weight:500}
 .expect-item-val{font-size:12px;color:var(--text-muted);line-height:1.4}
 
-.resume-banner{background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:14px 20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.resume-banner{background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:14px 20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .resume-text{font-size:13px;color:var(--navy-dark)}
 
 .intake-card{background:var(--white);border-radius:20px;padding:40px;box-shadow:var(--shadow-md);border:1px solid rgba(201,168,76,0.08)}
@@ -135,6 +135,39 @@ textarea::placeholder{color:#b8c4d0}
 
 .disclaimer{text-align:center;font-size:11px;color:var(--text-light);margin-top:36px;line-height:1.7;opacity:0.65}
 
+/* PRINT REPORT */
+.report-card{background:var(--white);border-radius:20px;padding:44px 40px;box-shadow:var(--shadow-md);margin-top:20px;border:1px solid rgba(201,168,76,0.12)}
+.report-header{text-align:center;padding-bottom:28px;border-bottom:1px solid var(--cream-dark);margin-bottom:28px}
+.report-logo{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.report-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--navy-dark);margin-bottom:6px}
+.report-authors{font-size:12px;color:var(--text-muted);margin-bottom:4px}
+.report-date{font-size:11px;color:var(--text-light)}
+.report-section{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--cream-dark)}
+.report-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.report-factor-name{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;font-weight:500}
+.report-factor-q{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;color:var(--navy-dark);margin-bottom:10px;line-height:1.3}
+.report-response{font-size:13px;color:var(--text);line-height:1.7;background:var(--cream);border-radius:8px;padding:12px 16px;margin-bottom:10px;border-left:3px solid var(--cream-dark)}
+.report-reflection{font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:8px}
+.report-reflection p{margin-bottom:8px}
+.report-reflection p:last-child{margin-bottom:0}
+.report-action{font-size:12px;color:var(--gold-dim);font-style:italic;line-height:1.6;padding:8px 12px;background:rgba(201,168,76,0.07);border-radius:6px}
+.report-synth{background:linear-gradient(145deg,var(--navy-dark),var(--navy-mid));border-radius:12px;padding:24px 28px;color:var(--white);margin-bottom:20px}
+.report-synth-label{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.report-synth p{font-size:14px;line-height:1.8;color:rgba(255,255,255,0.87);margin-bottom:12px}
+.report-synth p:last-child{margin-bottom:0}
+.report-footer{text-align:center;padding-top:20px;border-top:1px solid var(--cream-dark)}
+.report-footer p{font-size:11px;color:var(--text-light);line-height:1.7}
+
+@media print{
+  body{background:white}
+  body::before{display:none}
+  .app{padding:0;max-width:100%}
+  .header,.chapter-progress,.no-print{display:none}
+  .report-card{box-shadow:none;border:none;padding:20px}
+  .report-synth{background:#0F2640;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .btn-row,.cta,.synth-card,.action-step-screen{display:none}
+}
+
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-7px)}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.85)}}
@@ -145,27 +178,28 @@ textarea::placeholder{color:#b8c4d0}
 <body>
 <div class="app">
   <div class="header">
-    <div class="brand-pill"><div class="brand-dot"></div><span class="brand-text">Layers Not Linear &nbsp;&middot;&nbsp; Tyler Blackwell</span></div>
+    <div class="brand-pill"><div class="brand-dot"></div><span class="brand-text">Layers Not Linear</span></div>
     <h1>Factors of Career Choice<sup>&copy;</sup></h1>
-    <p class="header-sub">A full seven-factor experience. Personalized AI coaching grounded in behavioral science.</p>
+    <p class="header-sub">A full seven-factor career coaching experience grounded in behavioral science.</p>
+    <p class="header-authors">Developed by Tyler Blackwell &amp; Dr. Richard Blackwell</p>
     <div class="gold-rule"><div class="gold-rule-dot"></div></div>
   </div>
   <div id="root"></div>
-  <p class="disclaimer">Built on the Factors of Career Choice&copy; framework by Tyler Blackwell &nbsp;&middot;&nbsp; Your answers are saved locally and never shared &nbsp;&middot;&nbsp; careerprint.co</p>
+  <p class="disclaimer">Factors of Career Choice&copy; &nbsp;&middot;&nbsp; Tyler Blackwell &amp; Dr. Richard Blackwell &nbsp;&middot;&nbsp; careerprint.co &nbsp;&middot;&nbsp; Layers Not Linear<br>Your answers are saved locally on your device and are never shared or stored externally.</p>
 </div>
 
 <script>
 var PROXY='https://career-coach-proxy.tcblackwell.workers.dev';
-var SAVE_KEY='fcc_v1_state';
+var SAVE_KEY='fcc_v2_state';
 
 var FACTORS=[
-  {id:'abilities',num:1,chapter:1,name:'Abilities',question:'What are you naturally good at \u2014 before anyone taught you?',sub:'Think about what has always come easily to you. Not skills you worked hard to build, but the capacities that were already there. The way you think, connect ideas, listen, lead, create, or see patterns others miss. What do people ask for your help with, unprompted?',ph:'Take your time. There is no right answer here. Just write what comes to mind...',sys:'You are a thoughtful career coach trained in the Factors of Career Choice framework developed by Tyler Blackwell. The user is reflecting on their natural Abilities \u2014 what they are innately oriented toward before anyone taught them. Use the intake context provided to personalize your response. Reflect back what you hear, name the ability underneath their words with precision, and offer one insight that helps them see themselves more clearly. Be warm, specific, and grounded. No generic praise. No lists. Write 2\u20133 short paragraphs in flowing prose. End with one question that deepens their reflection. Keep under 210 words.',action:'This week, notice one moment when a task felt completely effortless \u2014 when time disappeared and you forgot to check your phone. Write down what you were actually doing in that moment. That is data.'},
-  {id:'skills',num:2,chapter:1,name:'Skills',question:'Which skills did you choose \u2014 and which chose you?',sub:'Skills are built, not born. Some you pursued because you genuinely wanted to. Others developed because circumstance, obligation, or necessity required it. Think about the skills you have accumulated. Which ones feel like yours? Which ones feel like a role you were assigned?',ph:'Think about the skills that energize you versus the ones that drain you, even when you do them well...',sys:'You are a thoughtful career coach trained in the Factors of Career Choice framework. The user is reflecting on their Skills \u2014 distinguishing between skills built by desire versus obligation. Use the intake context to personalize. Reflect what you hear, name the distinction between chosen and obligated skills, and help them see which skills align with who they actually are. Be warm, precise, and direct. No lists. Write 2\u20133 short paragraphs. End with one question. Keep under 210 words.',action:'List your three most-used skills at work. Next to each one, write a single word: chose or inherited. If you inherited more than you chose, that is worth sitting with.'},
-  {id:'interests',num:3,chapter:1,name:'Interests',question:'What draws your attention \u2014 and has that changed?',sub:'Interests are not fixed. They evolve, go underground, find new expressions, or reveal what they were always pointing at. Think about what genuinely captures your curiosity right now \u2014 and whether that is different from what drew you five or ten years ago.',ph:'What do you find yourself reading about, talking about, or thinking about when nobody is watching?',sys:'You are a thoughtful career coach trained in the Factors of Career Choice framework. The user is reflecting on their Interests \u2014 what draws their attention and how that has evolved. Use intake context to personalize. Note whether their interests appear to be evolving within a domain or pointing toward something deeper across domains. Be warm and specific. No lists. Write 2\u20133 short paragraphs. End with one question. Keep under 210 words.',action:'Think of something you used to be deeply interested in that you have set aside. Ask yourself: did the interest actually die, or did it go underground? Where might it be pointing now?'},
-  {id:'values',num:4,chapter:2,name:'Values',question:'What does your career actually reflect about what you believe matters?',sub:'Values reveal themselves in the moments that cost something. The meeting where you said nothing and drove home unsettled. The offer you turned down without fully explaining why. The role you stayed in longer than you should have. What do those moments tell you?',ph:'Think about a recent moment when something at work felt wrong, even if you could not name why...',sys:'You are a thoughtful career coach trained in the Factors of Career Choice framework. The user is reflecting on their Values \u2014 both ethical values and life-stage values. Use intake context carefully. If they indicated their values feel tested, acknowledge that. Be warm, precise, and honest. Help them see the difference between what they say they value and what their decisions reflect. No lists. Write 2\u20133 paragraphs. End with one question. Keep under 220 words.',action:'Write down two or three moments in your career when you felt genuinely proud. Then two or three moments when something felt deeply wrong. Your values are almost always visible in both kinds of reactions before they are visible in reflection.'},
-  {id:'family',num:5,chapter:2,name:'Family',question:'What script did your family hand you \u2014 and how much of it are you still performing?',sub:'Your family of origin gave you a set of beliefs about work, ambition, money, and what kinds of lives are possible \u2014 before you were old enough to question them. And the family you have built is shaping the decisions you make right now. Both deserve honest examination.',ph:'What did success, failure, money, or ambition mean in your family growing up? What was celebrated? What was feared?',sys:'You are a thoughtful career coach trained in the Factors of Career Choice framework, developed with Richard Blackwell PhD, a psychologist with 50 years of practice. The user is reflecting on the Family factor \u2014 the unspoken scripts of family of origin, and the influence of the family they have built. Use intake context. Name the pattern or script you observe. Help them see what was inherited versus what was chosen. Be warm, careful, and honest. Do not be clinical. No lists. Write 2\u20133 paragraphs. End with one gentle question. Keep under 230 words.',action:'Identify one belief about work or success that you received from your family of origin. Ask yourself: do I still believe this? Did I ever actually choose it? What would I believe if I were starting from scratch?'},
-  {id:'goals',num:6,chapter:3,name:'Goals',question:'Where are you going \u2014 and who decided that?',sub:'Most people can describe their career goals. Far fewer have examined whether those goals are actually theirs \u2014 or whether they were inherited from a parent, absorbed from a peer group, or arrived at by default because they were the next logical step on a path they never consciously chose.',ph:'What are you working toward right now? When did you decide that? Have you ever questioned it?',sys:'You are a thoughtful career coach trained in the Factors of Career Choice framework. The user is reflecting on their Goals \u2014 specifically whether the direction they are pursuing was consciously chosen or inherited and unexamined. Use intake context. Be warm and precise. No lists. Write 2\u20133 paragraphs. End with one question. Keep under 210 words.',action:'Write down your single most important professional goal right now. Then answer: when did I decide this? Did I choose it or did I drift into it? If I could choose freely with no constraints, would I choose the same thing?'},
-  {id:'developmental_stage',num:7,chapter:3,name:'Developmental Stage',question:'What does this specific moment of your life actually require?',sub:'Career decisions do not happen in a vacuum. They happen at a particular moment \u2014 with a particular set of circumstances, relationships, responsibilities, and energies. What this moment requires may be different from what the last chapter required, or what the next one will.',ph:'What is this season of your life asking of you that is different from five years ago?',sys:'You are a thoughtful career coach trained in the Factors of Career Choice framework. The user is reflecting on Developmental Stage \u2014 how their life circumstances, age, responsibilities, and energy shape what career decisions make sense right now. Use intake context fully here. Help them see what this specific moment is asking for, without judgment. Be warm, grounded, and honest. No lists. Write 2\u20133 paragraphs. End with one question. Keep under 220 words.',action:'Write one sentence about what this chapter of your life needs most right now \u2014 not what you think you should want, but what this season genuinely requires. Then ask: are my career decisions aligned with that?'}
+  {id:'abilities',num:1,chapter:1,name:'Abilities',question:'What are you naturally good at \u2014 before anyone taught you?',sub:'Think about what has always come easily to you. Not skills you worked hard to build, but the capacities that were already there. The way you think, connect ideas, listen, lead, create, or see patterns others miss. What do people ask for your help with, unprompted?',ph:'Take your time. There is no right answer here. Just write what comes to mind...',sys:'You are a thoughtful career coach trained in the Factors of Career Choice framework developed by Tyler Blackwell and Dr. Richard Blackwell. The user is reflecting on their natural Abilities. Use the intake context to personalize. Reflect back what you hear, name the ability underneath their words with precision, and offer one insight that helps them see themselves more clearly. Be warm, specific, grounded. No generic praise. No lists. Write 2-3 short paragraphs in flowing prose. End with one question. Keep under 210 words.',action:'This week, notice one moment when a task felt completely effortless \u2014 when time disappeared and you forgot to check your phone. Write down what you were actually doing in that moment. That is data.'},
+  {id:'skills',num:2,chapter:1,name:'Skills',question:'Which skills did you choose \u2014 and which chose you?',sub:'Skills are built, not born. Some you pursued because you genuinely wanted to. Others developed because circumstance, obligation, or necessity required it. Think about the skills you have accumulated. Which ones feel like yours? Which ones feel like a role you were assigned?',ph:'Think about the skills that energize you versus the ones that drain you, even when you do them well...',sys:'You are a thoughtful career coach trained in the Factors of Career Choice framework by Tyler Blackwell and Dr. Richard Blackwell. The user is reflecting on their Skills \u2014 desire vs obligation. Use intake context. Reflect what you hear, name the distinction, help them see which skills align with who they actually are. Warm, precise, direct. No lists. 2-3 paragraphs. End with one question. Under 210 words.',action:'List your three most-used skills at work. Next to each one, write one word: chose or inherited. If you inherited more than you chose, that is worth sitting with.'},
+  {id:'interests',num:3,chapter:1,name:'Interests',question:'What draws your attention \u2014 and has that changed?',sub:'Interests are not fixed. They evolve, go underground, find new expressions, or reveal what they were always pointing at. Think about what genuinely captures your curiosity right now \u2014 and whether that is different from what drew you five or ten years ago.',ph:'What do you find yourself reading, talking about, or thinking about when nobody is watching?',sys:'You are a thoughtful career coach trained in the Factors of Career Choice framework by Tyler Blackwell and Dr. Richard Blackwell. The user is reflecting on Interests \u2014 what draws their attention and how it has evolved. Use intake context. Note whether interests are evolving within a domain or pointing toward something deeper across domains. Warm, specific. No lists. 2-3 paragraphs. End with one question. Under 210 words.',action:'Think of something you used to be deeply interested in that you have set aside. Ask yourself: did the interest die, or did it go underground? Where might it be pointing now?'},
+  {id:'values',num:4,chapter:2,name:'Values',question:'What does your career actually reflect about what you believe matters?',sub:'Values reveal themselves in the moments that cost something. The meeting where you said nothing and drove home unsettled. The offer you turned down without fully explaining why. The role you stayed in longer than you should have. What do those moments tell you?',ph:'Think about a recent moment when something at work felt wrong, even if you could not name why...',sys:'You are a thoughtful career coach trained in the Factors of Career Choice framework by Tyler Blackwell and Dr. Richard Blackwell. The user is reflecting on Values \u2014 both ethical values and life-stage values. Use intake context carefully. If they indicated values feel tested, acknowledge it. Help them see the difference between what they say they value and what their decisions reflect. Warm, precise, honest. No lists. 2-3 paragraphs. End with one question. Under 220 words.',action:'Write down two or three moments in your career when you felt genuinely proud. Then two or three when something felt deeply wrong. Your values are almost always visible in both kinds of reactions before they are visible in reflection.'},
+  {id:'family',num:5,chapter:2,name:'Family',question:'What script did your family hand you \u2014 and how much of it are you still performing?',sub:'Your family of origin gave you a set of beliefs about work, ambition, money, and what kinds of lives are possible \u2014 before you were old enough to question them. And the family you have built is shaping the decisions you make right now. Both deserve honest examination.',ph:'What did success, failure, money, or ambition mean in your family growing up? What was celebrated? What was feared?',sys:'You are a thoughtful career coach trained in the Factors of Career Choice framework, developed by Tyler Blackwell and Dr. Richard Blackwell PhD, a psychologist with 50 years of practice. The user is reflecting on the Family factor \u2014 scripts of family of origin, and influence of the family they have built. Use intake context. Name the pattern or script you observe. Help them see what was inherited versus chosen. Warm, careful, honest. Not clinical. No lists. 2-3 paragraphs. End with one gentle question. Under 230 words.',action:'Identify one belief about work or success that you received from your family of origin. Ask yourself: do I still believe this? Did I ever actually choose it? What would I believe if I were starting from scratch?'},
+  {id:'goals',num:6,chapter:3,name:'Goals',question:'Where are you going \u2014 and who decided that?',sub:'Most people can describe their career goals. Far fewer have examined whether those goals are actually theirs \u2014 or whether they were inherited from a parent, absorbed from a peer group, or arrived at by default because they were the next logical step on a path they never consciously chose.',ph:'What are you working toward right now? When did you decide that? Have you ever questioned it?',sys:'You are a thoughtful career coach trained in the Factors of Career Choice framework by Tyler Blackwell and Dr. Richard Blackwell. The user is reflecting on Goals \u2014 whether their direction was consciously chosen or inherited and unexamined. Use intake context. Warm and precise. No lists. 2-3 paragraphs. End with one question. Under 210 words.',action:'Write down your single most important professional goal right now. Then answer: when did I decide this? Did I choose it or drift into it? If I could choose freely with no constraints, would I choose the same thing?'},
+  {id:'developmental_stage',num:7,chapter:3,name:'Developmental Stage',question:'What does this specific moment of your life actually require?',sub:'Career decisions do not happen in a vacuum. They happen at a particular moment \u2014 with a particular set of circumstances, relationships, responsibilities, and energies. What this moment requires may be very different from what the last chapter required, or what the next one will.',ph:'What is this season of your life asking of you that is different from five years ago?',sys:'You are a thoughtful career coach trained in the Factors of Career Choice framework by Tyler Blackwell and Dr. Richard Blackwell. The user is reflecting on Developmental Stage \u2014 how life circumstances, age, responsibilities, and energy shape what career decisions make sense now. Use intake context fully \u2014 age range, life changes, employment status are especially relevant. Help them see what this specific moment is asking for, without judgment. Warm, grounded, honest. No lists. 2-3 paragraphs. End with one question. Under 220 words.',action:'Write one sentence about what this chapter of your life needs most right now \u2014 not what you think you should want, but what this season genuinely requires. Then ask: are my career decisions aligned with that?'}
 ];
 
 var CHAPTERS=[
@@ -201,6 +235,7 @@ function render(){
   if(state.screen==='chapter'){drawChapter(root);return}
   if(state.screen==='factor'){drawFactor(root);return}
   if(state.screen==='synthesis'){drawSynthesis(root);return}
+  if(state.screen==='report'){drawReport(root);return}
 }
 
 function drawWelcome(root){
@@ -211,16 +246,16 @@ function drawWelcome(root){
   }
   root.innerHTML=resumeHtml+
     '<div class="welcome fade-in">'+
-    '<img src="factors-diagram.png" alt="Factors of Career Choice diagram showing all seven factors: Abilities, Skills, Interests, Values, Goals, Family, and Developmental Stage arranged in an interconnected circle around Career Identity" class="welcome-diagram">'+
+    '<img src="factors-diagram.png" alt="Factors of Career Choice framework diagram showing all seven factors arranged in an interconnected circle" class="welcome-diagram">'+
     '<div class="welcome-body">'+
     '<h2>Where did your career come from?</h2>'+
     '<p class="welcome-lead">Most career tools tell you what to do next. This one asks something harder: who are you, what shaped you, and are the choices you are making actually yours?</p>'+
-    '<p class="welcome-lead">Seven factors. Real AI coaching. Personalized to your specific situation. About 25 minutes.</p>'+
+    '<p class="welcome-lead">Seven factors. Real AI coaching. A full printable report at the end. About 25 minutes.</p>'+
     '<div class="expect-grid">'+
-    '<div class="expect-item"><div class="expect-item-label">Framework</div><div class="expect-item-val">Factors of Career Choice&copy; by Tyler Blackwell</div></div>'+
+    '<div class="expect-item"><div class="expect-item-label">Framework</div><div class="expect-item-val">Factors of Career Choice&copy; &mdash; Tyler Blackwell &amp; Dr. Richard Blackwell</div></div>'+
     '<div class="expect-item"><div class="expect-item-label">Chapters</div><div class="expect-item-val">3 chapters, 7 factors, personalized throughout</div></div>'+
     '<div class="expect-item"><div class="expect-item-label">AI coaching</div><div class="expect-item-val">Real reflection after every factor</div></div>'+
-    '<div class="expect-item"><div class="expect-item-label">Progress saved</div><div class="expect-item-val">Return anytime, pick up where you left off</div></div>'+
+    '<div class="expect-item"><div class="expect-item-label">Your report</div><div class="expect-item-val">Full printable PDF at the end to keep</div></div>'+
     '</div>'+
     '<button class="btn btn-navy btn-full" id="start-btn">Begin the experience &nbsp;&#x2192;</button>'+
     '</div></div>';
@@ -391,7 +426,7 @@ function drawSynthesis(root){
   var ctx=intakeSummary();
   var responses='';
   FACTORS.forEach(function(f){responses+=f.name.toUpperCase()+': '+(state.responses[f.id]||'Not provided')+'\n\n';});
-  var prompt='Context about this person: '+ctx+'\n\nHere are their responses to all seven Factors of Career Choice:\n\n'+responses+'Synthesize all seven into a complete integrated portrait. Find the thread running through all seven answers, name tensions worth noting, and show what becomes visible together that was not visible separately. Write 4-5 paragraphs in warm intelligent prose. No lists. Be specific. End with one honest generous observation about where this person might find the most meaning. Keep under 400 words.';
+  var prompt='Context about this person: '+ctx+'\n\nHere are their responses to all seven Factors of Career Choice:\n\n'+responses+'Synthesize all seven into a complete integrated portrait. Find the thread running through all seven answers, name tensions worth noting honestly, and show what becomes visible together that was not visible separately. Write 4-5 paragraphs in warm intelligent prose. No lists. Be specific to what they shared. End with one honest generous observation about where this person might find the most meaning. Keep under 400 words.';
   fetch(PROXY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1500,messages:[{role:'user',content:prompt}]})})
   .then(function(res){return res.json()})
   .then(function(data){
@@ -413,14 +448,81 @@ function showSynthResult(root,txt){
     '<div class="synth-card fade-in"><div class="synth-eyebrow">Your seven-factor portrait &nbsp;&middot;&nbsp; Factors of Career Choice&copy;</div><h2>What your answers reveal</h2><div class="synth-body">'+paras+'</div></div>'+
     '<div class="cta fade-in">'+
     '<h3>You have done something rare.</h3>'+
-    '<p>Most people never examine all seven factors at once. You just did. That kind of honest self-examination is where real career clarity starts.</p>'+
+    '<p>Most people never examine all seven factors at once. You just did. Your full report is ready below \u2014 with every reflection and a printable PDF you can save and return to.</p>'+
     '<div class="factor-tags">'+tags+'</div>'+
-    '<p style="font-style:italic;color:var(--text-light);margin-bottom:24px;font-size:13px;">The full career coaching app is in development. Follow Layers Not Linear to be the first to know when it launches.</p>'+
     '<div class="cta-btns">'+
-    '<button class="btn btn-navy" id="sub-btn">Follow Layers Not Linear</button>'+
-    '<button class="btn btn-ghost" id="restart-btn">Start over</button>'+
+    '<button class="btn btn-navy" id="report-btn">View &amp; print my full report</button>'+
+    '<button class="btn btn-ghost" id="sub-btn">Follow Layers Not Linear</button>'+
     '</div></div>';
+  document.getElementById('report-btn').onclick=function(){state.screen='report';save();r()};
   document.getElementById('sub-btn').onclick=function(){window.open('https://layersnotlinear.substack.com','_blank')};
+}
+
+function drawReport(root){
+  var now=new Date();
+  var dateStr=now.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  var intakeDisplay='';
+  if(state.intake.age)intakeDisplay+='Age range: '+state.intake.age+' &nbsp;&middot;&nbsp; ';
+  if(state.intake.reason)intakeDisplay+=state.intake.reason+' &nbsp;&middot;&nbsp; ';
+  if(state.intake.employed)intakeDisplay+=state.intake.employed;
+
+  var sectionsHtml='';
+  FACTORS.forEach(function(f){
+    var resp=state.responses[f.id]||'';
+    var refl=state.reflections[f.id]||'';
+    var act=state.actionSteps[f.id]||f.action;
+    var reflParas=refl.split('\n\n').map(function(p){return'<p>'+p.replace(/\n/g,'<br>')+'</p>'}).join('');
+    sectionsHtml+=
+      '<div class="report-section">'+
+      '<div class="report-factor-name">Factor '+f.num+' &nbsp;&middot;&nbsp; '+f.name+'</div>'+
+      '<div class="report-factor-q">'+f.question+'</div>'+
+      '<div class="report-response">'+resp+'</div>'+
+      '<div class="report-reflection">'+reflParas+'</div>'+
+      '<div class="report-action"><b>Action step:</b> '+act+'</div>'+
+      '</div>';
+  });
+
+  var synthParas=state.synthText.split('\n\n').map(function(p){return'<p>'+p.replace(/\n/g,'<br>')+'</p>'}).join('');
+
+  root.innerHTML=
+    '<div class="btn-row no-print fade-in" style="margin-bottom:16px;">'+
+    '<button class="btn btn-ghost" id="back-to-synth">&#x2190; Back to portrait</button>'+
+    '<button class="btn btn-navy" id="print-btn">&#x2399; Print / Save as PDF</button>'+
+    '</div>'+
+    '<div class="report-card fade-in">'+
+    '<div class="report-header">'+
+    '<div class="report-logo">Factors of Career Choice&copy;</div>'+
+    '<div class="report-title">Your Career Portrait</div>'+
+    '<div class="report-authors">Developed by Tyler Blackwell &amp; Dr. Richard Blackwell &nbsp;&middot;&nbsp; Layers Not Linear &nbsp;&middot;&nbsp; careerprint.co</div>'+
+    '<div class="report-date">Generated '+dateStr+(intakeDisplay?' &nbsp;&middot;&nbsp; '+intakeDisplay:'')+'</div>'+
+    '</div>'+
+
+    '<div class="report-section">'+
+    '<div class="report-factor-name">Your seven-factor portrait &nbsp;&middot;&nbsp; Full synthesis</div>'+
+    '<div class="report-synth">'+
+    '<div class="report-synth-label">What your answers reveal across all seven factors</div>'+
+    synthParas+
+    '</div>'+
+    '</div>'+
+
+    sectionsHtml+
+
+    '<div class="report-footer">'+
+    '<p>Factors of Career Choice&copy; &nbsp;&middot;&nbsp; Developed by Tyler Blackwell &amp; Dr. Richard Blackwell &nbsp;&middot;&nbsp; careerprint.co</p>'+
+    '<p>Layers Not Linear &nbsp;&middot;&nbsp; layersnotlinear.substack.com &nbsp;&middot;&nbsp; This report was generated by AI coaching grounded in the Factors of Career Choice framework.</p>'+
+    '</div>'+
+    '</div>'+
+
+    '<div class="btn-row no-print fade-in" style="margin-top:16px;">'+
+    '<button class="btn btn-ghost" id="back-to-synth2">&#x2190; Back</button>'+
+    '<button class="btn btn-navy" id="print-btn2">&#x2399; Print / Save as PDF</button>'+
+    '<button class="btn btn-ghost" id="restart-btn">Start over</button>'+
+    '</div>';
+
+  document.getElementById('back-to-synth').onclick=function(){state.screen='synthesis';r()};
+  document.getElementById('back-to-synth2').onclick=function(){state.screen='synthesis';r()};
+  document.getElementById('print-btn').onclick=function(){window.print()};
+  document.getElementById('print-btn2').onclick=function(){window.print()};
   document.getElementById('restart-btn').onclick=function(){clearState();location.reload()};
 }
 
