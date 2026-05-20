@@ -14,12 +14,12 @@
   --text:#1a1a2e;--text-muted:#5a6a7e;--text-light:#8a9aaa;
   --white:#ffffff;
   --shadow-md:0 4px 32px rgba(27,58,92,0.12);
+  --shadow-lg:0 12px 48px rgba(27,58,92,0.18);
 }
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 15% 50%,rgba(27,58,92,0.04) 0%,transparent 55%),radial-gradient(ellipse at 85% 20%,rgba(201,168,76,0.05) 0%,transparent 50%);pointer-events:none;z-index:0}
 
-/* NAV */
 .nav{position:sticky;top:0;z-index:100;background:rgba(248,244,238,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,168,76,0.15);padding:0 24px}
 .nav-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
 .nav-brand{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--navy-dark);text-decoration:none}
@@ -33,15 +33,13 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
 .page{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 24px 100px}
 
-/* HERO */
 .hero{padding:72px 0 60px;border-bottom:1px solid var(--cream-dark);margin-bottom:60px}
 .hero-eyebrow{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
 .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,52px);font-weight:300;color:var(--navy-dark);line-height:1.1;margin-bottom:16px;letter-spacing:-0.01em}
 .hero h1 em{font-style:italic}
-.hero-sub{font-size:17px;color:var(--text-muted);line-height:1.7;max-width:600px;margin-bottom:20px}
+.hero-sub{font-size:17px;color:var(--text-muted);line-height:1.7;max-width:620px;margin-bottom:12px}
 .hero-authors{font-size:13px;color:var(--gold-dim);letter-spacing:0.06em}
 
-/* SECTION */
 .section{margin-bottom:64px}
 .section-label{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px}
 .section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,0.3),transparent)}
@@ -50,46 +48,44 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .section p{font-size:16px;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
 .section p:last-child{margin-bottom:0}
 
-/* PROFILE CARDS */
-.profiles{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px}
-@media(max-width:600px){.profiles{grid-template-columns:1fr}}
-.profile-card{background:var(--white);border-radius:20px;padding:36px;box-shadow:var(--shadow-md);border:1px solid rgba(201,168,76,0.08)}
+/* PROFILE CARDS WITH PHOTOS */
+.profiles{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:48px}
+@media(max-width:640px){.profiles{grid-template-columns:1fr}}
+.profile-card{background:var(--white);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-md);border:1px solid rgba(201,168,76,0.08)}
+.profile-photo{width:100%;height:280px;object-fit:cover;object-position:center top;display:block}
+.profile-photo-placeholder{width:100%;height:280px;background:linear-gradient(145deg,var(--navy-dark),var(--navy-light));display:flex;align-items:center;justify-content:center;font-size:48px}
+.profile-body{padding:28px 32px 32px}
 .profile-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--navy-dark);margin-bottom:4px}
-.profile-title{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:16px}
+.profile-title{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:14px}
 .profile-divider{width:32px;height:1.5px;background:var(--gold);margin-bottom:16px;border-radius:2px}
 .profile-bio{font-size:14px;color:var(--text-muted);line-height:1.75}
 .profile-bio p{margin-bottom:12px}
 .profile-bio p:last-child{margin-bottom:0}
-.profile-creds{margin-top:16px;padding-top:16px;border-top:1px solid var(--cream-dark)}
+.profile-creds{margin-top:18px;padding-top:18px;border-top:1px solid var(--cream-dark)}
 .profile-cred{font-size:12px;color:var(--text-light);line-height:1.6;margin-bottom:4px;display:flex;gap:8px}
 .profile-cred::before{content:'—';color:var(--gold);flex-shrink:0}
 
-/* FACTOR GRID */
-.factor-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.factor-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
 @media(max-width:560px){.factor-grid{grid-template-columns:1fr}}
 .factor-item{background:var(--white);border-radius:14px;padding:20px 22px;border:1px solid rgba(201,168,76,0.1);box-shadow:0 2px 12px rgba(27,58,92,0.06)}
 .factor-num{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
 .factor-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--navy-dark);margin-bottom:6px}
 .factor-desc{font-size:13px;color:var(--text-muted);line-height:1.6}
 
-/* RESEARCH */
 .research-list{margin-top:12px}
 .research-item{padding:14px 18px;background:var(--white);border-radius:10px;border:1px solid var(--cream-dark);margin-bottom:8px}
 .research-citation{font-size:13px;color:var(--text-muted);line-height:1.6}
 .research-note{font-size:12px;color:var(--text-light);margin-top:4px;font-style:italic}
 
-/* DISCLAIMER BOX */
 .disclaimer-box{background:linear-gradient(145deg,var(--navy-dark),#1a3352);border-radius:16px;padding:32px 36px;color:var(--white);margin-top:24px}
 .disclaimer-box h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--white);margin-bottom:12px}
 .disclaimer-box p{font-size:14px;line-height:1.75;color:rgba(255,255,255,0.82);margin-bottom:10px}
 .disclaimer-box p:last-child{margin-bottom:0}
-.disclaimer-box a{color:var(--gold-light);text-decoration:none}
 .crisis-box{background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);border-radius:10px;padding:16px 20px;margin-top:16px}
 .crisis-box p{font-size:13px;color:rgba(255,255,255,0.9);margin-bottom:6px}
 .crisis-box p:last-child{margin-bottom:0}
 .crisis-box b{color:var(--gold-light)}
 
-/* FOOTER */
 .footer{text-align:center;padding-top:40px;border-top:1px solid var(--cream-dark);margin-top:40px}
 .footer p{font-size:12px;color:var(--text-light);line-height:1.8}
 
@@ -114,7 +110,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
   <div class="hero fade-in">
     <div class="hero-eyebrow">About the framework &nbsp;&middot;&nbsp; About the builders</div>
-    <h1>A framework built from <em>fifty years of listening</em> and a lifetime of non-linear choices.</h1>
+    <h1>A framework built from <em>fifty years of listening</em><br>and a lifetime of non-linear choices.</h1>
     <p class="hero-sub">The Factors of Career Choice was not built in a boardroom or a business school. It was built across decades of clinical practice, academic research, and deeply personal conversations between a father and a son trying to make sense of how people actually make the choices that define their lives.</p>
     <p class="hero-authors">Tyler Blackwell &nbsp;&middot;&nbsp; Dr. Richard Blackwell &nbsp;&middot;&nbsp; Layers Not Linear &nbsp;&middot;&nbsp; careerprint.co</p>
   </div>
@@ -125,45 +121,50 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="profiles">
 
       <div class="profile-card">
-        <div class="profile-name">Tyler Blackwell</div>
-        <div class="profile-title">Co-creator &nbsp;&middot;&nbsp; Framework developer &nbsp;&middot;&nbsp; Workforce strategist</div>
-        <div class="profile-divider"></div>
-        <div class="profile-bio">
-          <p>Tyler Blackwell's career is itself a living argument for the Factors of Career Choice framework. It is not linear. It does not follow a single industry or a single discipline. It follows a person trying, over two decades, to understand how human systems work.</p>
-          <p>He began his career at the U.S. State Department as a Presidential Management Fellow, working on Israeli-Palestinian affairs under Ambassador David Hale with a Top Secret/SCI clearance. He studied Arabic and Middle Eastern Studies at the University of Chicago, where he also earned an Executive Program in Leadership degree from Booth. His graduate theses explored the lives of Patrice Lumumba and Abd al-Qadir Al-Jazai'ri — leaders navigating identity, purpose, and impossible circumstances. He also holds a certification in behavioral science from MIT.</p>
-          <p>From diplomacy he moved to education, leading executive functions at Chicago Public Schools. From there to management consulting at Kincentric and EY, where he focused on organizational design, capability development, and workforce strategy. He is currently Director of Global Workforce Planning at Morningstar, where he is building a strategic, data-driven, and human-centered workforce planning capability across Morningstar and PitchBook.</p>
-          <p>Alongside his corporate work, Tyler is building Wit — an enterprise workforce intelligence platform — and Layers Not Linear, a Substack newsletter and thought leadership platform that sits at the intersection of behavioral science, labor economics, geopolitics, and career design.</p>
-          <p>The Factors of Career Choice framework began in 2016 and 2017 as a tool Tyler used in coaching conversations. Over nearly a decade of refinement — shaped by hundreds of real career conversations and deepened by ongoing collaboration with his father — it has become the most coherent and research-grounded framework he knows for understanding how people actually make career choices.</p>
-        </div>
-        <div class="profile-creds">
-          <div class="profile-cred">Director of Global Workforce Planning, Morningstar</div>
-          <div class="profile-cred">MA, Arabic &amp; Middle Eastern Studies, University of Chicago</div>
-          <div class="profile-cred">EPEL, University of Chicago Booth</div>
-          <div class="profile-cred">BA, Sewanee: The University of the South (Magna Cum Laude)</div>
-          <div class="profile-cred">Certification in Behavioral Science, MIT</div>
-          <div class="profile-cred">Certification in Change Management, Prosci</div>
-          <div class="profile-cred">Presidential Management Fellow, U.S. State Department</div>
+        <img src="headshot_tyler_march_2026.jpg" alt="Tyler Blackwell" class="profile-photo">
+        <div class="profile-body">
+          <div class="profile-name">Tyler Blackwell</div>
+          <div class="profile-title">Co-creator &nbsp;&middot;&nbsp; Framework developer &nbsp;&middot;&nbsp; Workforce strategist</div>
+          <div class="profile-divider"></div>
+          <div class="profile-bio">
+            <p>Tyler Blackwell's career is itself a living argument for the Factors of Career Choice framework. It is not linear. It does not follow a single industry or a single discipline. It follows a person who has spent two decades trying to understand how human systems work and what makes people thrive inside them.</p>
+            <p>He began at the U.S. State Department as a Presidential Management Fellow, working on Israeli-Palestinian affairs under Ambassador David Hale with a Top Secret/SCI clearance. At Sewanee, he wrote his undergraduate thesis on Patrice Lumumba. At the University of Chicago, where he earned an MA in Arabic and Middle Eastern Studies and an Executive Program in Leadership degree from Booth, his graduate work turned to Abd al-Qadir Al-Jazai'ri. He also holds a certification in behavioral science from MIT and a change management certification from Prosci.</p>
+            <p>From diplomacy he moved to education, leading executive functions at Chicago Public Schools. From there to management consulting at Kincentric and EY, focused on organizational design and capability development. He is currently Director of Global Workforce Planning at Morningstar, building a strategic, data-driven, and human-centered workforce planning capability across Morningstar and PitchBook.</p>
+            <p>Alongside that work, Tyler is building Wit, an enterprise workforce intelligence platform, and Layers Not Linear, a Substack newsletter at the intersection of behavioral science, labor economics, geopolitics, and career design.</p>
+            <p>The Factors of Career Choice framework began in 2016 and 2017 as a tool Tyler used in coaching conversations. Over nearly a decade of refinement, shaped by hundreds of real career conversations and deepened by ongoing collaboration with his father, it became the most coherent and research-grounded framework he knows for how people actually make the choices that define their working lives.</p>
+          </div>
+          <div class="profile-creds">
+            <div class="profile-cred">Director of Global Workforce Planning, Morningstar</div>
+            <div class="profile-cred">MA, Arabic &amp; Middle Eastern Studies, University of Chicago</div>
+            <div class="profile-cred">EPEL, University of Chicago Booth</div>
+            <div class="profile-cred">BA, Sewanee: The University of the South (Magna Cum Laude)</div>
+            <div class="profile-cred">Certification in Behavioral Science, MIT</div>
+            <div class="profile-cred">Certification in Change Management, Prosci</div>
+            <div class="profile-cred">Presidential Management Fellow, U.S. State Department</div>
+          </div>
         </div>
       </div>
 
       <div class="profile-card">
-        <div class="profile-name">Dr. Richard Blackwell</div>
-        <div class="profile-title">Co-creator &nbsp;&middot;&nbsp; Psychologist &nbsp;&middot;&nbsp; Life coach &nbsp;&middot;&nbsp; 50 years of practice</div>
-        <div class="profile-divider"></div>
-        <div class="profile-bio">
-          <p>Dr. Richard Blackwell has spent more than fifty years sitting with people in some of the most difficult moments of their lives. He is a psychologist, a life coach, a former hospital chaplain, a therapist, a teacher, and Tyler's father. He is also, at 79, one of the most intellectually alive people either of us knows.</p>
-          <p>His life has been as non-linear as the framework he helped build. He grew up in Winston-Salem, North Carolina, where as a boy he met John F. Kennedy during a campaign visit. As a young man he stood on the National Mall and heard Martin Luther King Jr. deliver the "I Have a Dream" speech. He protested the Vietnam War. At a retreat in New England in the 1970s he found himself in conversation with some of the most consequential psychologists of the twentieth century, including members of Carl Jung's circle.</p>
-          <p>He earned a bachelor's in business from UNC-Chapel Hill, an M.Div. from Duke Divinity School, and a Ph.D. in psychology from UNC-Chapel Hill. He has been a pastor, a hospital chaplain, a cancer family therapist at a hospital in Charlotte, a psychologist in private practice, faculty at UC-Irvine, UNC-Charlotte, and several other institutions, and for the last chapter of his career, a life coach.</p>
-          <p>Over fifty years of practice he has worked with thousands of people navigating career transitions, life crises, grief, identity, relationships, and the quiet questions most people carry without knowing how to name them. The three-family framework — family of origin, family of choice, and family of work — is his contribution to the Factors of Career Choice. So is the insistence that career planning and life planning are the same thing.</p>
-          <p>He is Tyler's best mentor, closest friend, and the person without whom this framework would not exist.</p>
-        </div>
-        <div class="profile-creds">
-          <div class="profile-cred">Ph.D., Psychology, UNC-Chapel Hill</div>
-          <div class="profile-cred">M.Div., Duke Divinity School</div>
-          <div class="profile-cred">B.S., Business, UNC-Chapel Hill</div>
-          <div class="profile-cred">Faculty, UC-Irvine; UNC-Charlotte; and others</div>
-          <div class="profile-cred">50+ years of practice as therapist, psychologist, and life coach</div>
-          <div class="profile-cred">Hospital chaplain and cancer family therapist, Charlotte NC</div>
+        <img src="Richard.png" alt="Dr. Richard Blackwell" class="profile-photo">
+        <div class="profile-body">
+          <div class="profile-name">Dr. Richard Blackwell</div>
+          <div class="profile-title">Co-creator &nbsp;&middot;&nbsp; Psychologist &nbsp;&middot;&nbsp; Life coach &nbsp;&middot;&nbsp; 50 years of practice</div>
+          <div class="profile-divider"></div>
+          <div class="profile-bio">
+            <p>Dr. Richard Blackwell has spent more than fifty years sitting with people in some of the most difficult moments of their lives. A psychologist, a life coach, a former hospital chaplain, a therapist, and a teacher, he is also Tyler's father and the intellectual foundation on which much of this framework rests.</p>
+            <p>His life has been as non-linear as the framework he helped build. He grew up in Winston-Salem, North Carolina, where as a boy he met John F. Kennedy during a campaign visit. As a young man he stood on the National Mall and heard Martin Luther King Jr. deliver the "I Have a Dream" speech. He protested the Vietnam War. At a retreat in New England in the 1970s he found himself in conversation with some of the most consequential psychologists of the twentieth century, including members of Carl Jung's circle.</p>
+            <p>He earned a bachelor's in business from UNC-Chapel Hill, an M.Div. from Duke Divinity School, and a Ph.D. in psychology from UNC-Chapel Hill. He has been a pastor, a hospital chaplain, a cancer family therapist in Charlotte, a psychologist in private practice, faculty at UC-Irvine, UNC-Charlotte, and several other institutions, and in recent years a life coach.</p>
+            <p>He is a voracious reader, a brilliant synthesizer of ideas across disciplines, and a natural storyteller who can take fifty years of clinical observation and make it feel like a conversation over coffee. The three-family framework — family of origin, family of choice, and family of work — is his contribution to the Factors of Career Choice. So is the core conviction that career planning and life planning are the same thing.</p>
+          </div>
+          <div class="profile-creds">
+            <div class="profile-cred">Ph.D., Psychology, UNC-Chapel Hill</div>
+            <div class="profile-cred">M.Div., Duke Divinity School</div>
+            <div class="profile-cred">B.S., Business, UNC-Chapel Hill</div>
+            <div class="profile-cred">Faculty: UC-Irvine, UNC-Charlotte, and others</div>
+            <div class="profile-cred">50+ years as therapist, psychologist, and life coach</div>
+            <div class="profile-cred">Hospital chaplain and cancer family therapist, Charlotte NC</div>
+          </div>
         </div>
       </div>
 
@@ -174,11 +175,11 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <div class="section fade-in">
     <div class="section-label">The framework</div>
     <h2>Seven factors. <em>One honest conversation.</em></h2>
-    <p>The Factors of Career Choice framework began with a simple observation: most career tools ask you what you want to do. Very few ask you who you are, what shaped you, and whether the choices you are making are actually yours.</p>
+    <p>The Factors of Career Choice framework began with a simple observation: most career tools ask what you want to do. Very few ask who you are, what shaped you, and whether the choices you are making are actually yours.</p>
     <p>The framework identifies seven factors that shape every significant career decision a person makes. Some are about raw material — what you were born oriented toward, what you have built, what draws your attention. Some are about deeper influences — your values, the families that handed you your first map of the world. Some are about direction and timing — where you are going, and what this specific moment of your life requires.</p>
     <p>None of the factors is static. All of them change across a life. The framework is not a one-time diagnostic. It is a template to return to — when something shifts, when you feel stuck, when a life transition changes what is possible or necessary. Career planning equals life planning equals career planning.</p>
 
-    <div class="factor-grid" style="margin-top:28px">
+    <div class="factor-grid">
       <div class="factor-item">
         <div class="factor-num">Factor 1</div>
         <div class="factor-name">Abilities</div>
@@ -192,17 +193,17 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div class="factor-item">
         <div class="factor-num">Factor 3</div>
         <div class="factor-name">Interests</div>
-        <div class="factor-desc">What draws your attention and how that has evolved. Interests are not fixed — they reveal what they were always pointing at.</div>
+        <div class="factor-desc">What draws your attention and how that has evolved. Interests reveal what they were always pointing at.</div>
       </div>
       <div class="factor-item">
         <div class="factor-num">Factor 4</div>
         <div class="factor-name">Values</div>
-        <div class="factor-desc">Your internal compass. Both ethical values and life-stage values — and the difference between what you say you value and what your decisions reflect.</div>
+        <div class="factor-desc">Your internal compass. Both ethical values and life-stage values — and the gap between what you say you value and what your decisions reflect.</div>
       </div>
       <div class="factor-item">
         <div class="factor-num">Factor 5</div>
         <div class="factor-name">Family</div>
-        <div class="factor-desc">The three families — of origin, of choice, and of work. The scripts you were handed before you knew you were learning them.</div>
+        <div class="factor-desc">The three families — of origin, of choice, and of work. The scripts handed to you before you knew you were learning them.</div>
       </div>
       <div class="factor-item">
         <div class="factor-num">Factor 6</div>
@@ -212,16 +213,16 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div class="factor-item" style="grid-column:1/-1">
         <div class="factor-num">Factor 7</div>
         <div class="factor-name">Developmental Stage</div>
-        <div class="factor-desc">What this specific moment of your life actually requires. The same person at 24, 38, 52, and 68 needs very different things from their career — and the framework honors that.</div>
+        <div class="factor-desc">What this specific moment of your life actually requires. The same person at 24, 38, 52, and 68 needs very different things from their work — and the framework honors that.</div>
       </div>
     </div>
   </div>
 
-  <!-- THE RESEARCH -->
+  <!-- RESEARCH -->
   <div class="section fade-in">
     <div class="section-label">The research foundation</div>
     <h2>Grounded in <em>decades of vocational and clinical science.</em></h2>
-    <p>The Factors of Career Choice framework draws on a substantial body of research across vocational psychology, career development theory, clinical psychology, and behavioral science. The framework was not designed to replace that research — it was designed to make it accessible and actionable in real career conversations.</p>
+    <p>The Factors of Career Choice framework draws on a substantial body of research across vocational psychology, career development theory, clinical psychology, and behavioral science. The framework was designed to make that research accessible and actionable in real career conversations.</p>
 
     <div class="research-list">
       <div class="research-item">
@@ -230,14 +231,14 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       </div>
       <div class="research-item">
         <div class="research-citation">Kristof-Brown, A. et al. (2005). Consequences of individuals' fit at work. <em>Personnel Psychology.</em></div>
-        <div class="research-note">Meta-analysis of 172 studies on person-organization fit — the most robust predictor of career satisfaction and organizational commitment in the literature.</div>
+        <div class="research-note">Meta-analysis of 172 studies on person-organization fit — one of the most robust predictors of career satisfaction and organizational commitment in the literature.</div>
       </div>
       <div class="research-item">
-        <div class="research-citation">Arieli, S., Sagiv, L., & Roccas, S. (2020). Values at work. <em>Applied Psychology: An International Review.</em></div>
+        <div class="research-citation">Arieli, S., Sagiv, L., &amp; Roccas, S. (2020). Values at work. <em>Applied Psychology: An International Review.</em></div>
         <div class="research-note">Meta-analysis of 45 studies across 23,000+ workers finding that value-based fit produces a 0.41 correlation with job satisfaction and 0.56 with organizational commitment.</div>
       </div>
       <div class="research-item">
-        <div class="research-citation">Schwartz, S.H. (1992 & 2012). Theory of basic human values. <em>Advances in Experimental Social Psychology; Journal of Personality and Social Psychology.</em></div>
+        <div class="research-citation">Schwartz, S.H. (1992 &amp; 2012). Theory of basic human values. <em>Advances in Experimental Social Psychology; Journal of Personality and Social Psychology.</em></div>
         <div class="research-note">The foundational values circumplex model distinguishing stable ethical values from situational life-stage values — the research basis for the Values factor.</div>
       </div>
       <div class="research-item">
@@ -249,7 +250,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
         <div class="research-note">Structural family therapy — the clinical framework for understanding how family structure shapes individual behavior and career decisions.</div>
       </div>
       <div class="research-item">
-        <div class="research-citation">Whiston, S.C. & Keller, B.K. (2004). The influences of the family of origin on career development. <em>The Counseling Psychologist.</em></div>
+        <div class="research-citation">Whiston, S.C. &amp; Keller, B.K. (2004). The influences of the family of origin on career development. <em>The Counseling Psychologist.</em></div>
         <div class="research-note">Comprehensive review of how family of origin shapes career development — the most directly relevant empirical foundation for the Family factor.</div>
       </div>
       <div class="research-item">
@@ -257,15 +258,15 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
         <div class="research-note">Employees whose personal values align with their organization's purpose are more than four times as likely to be engaged at work.</div>
       </div>
       <div class="research-item">
-        <div class="research-citation">Holmes, T.H. & Rahe, R.H. (1967). The Social Readjustment Rating Scale. <em>Journal of Psychosomatic Research.</em></div>
+        <div class="research-citation">Holmes, T.H. &amp; Rahe, R.H. (1967). The Social Readjustment Rating Scale. <em>Journal of Psychosomatic Research.</em></div>
         <div class="research-note">The validated life stressor scale incorporated into the intake questions to give the AI coach meaningful context about the user's current life circumstances.</div>
       </div>
     </div>
   </div>
 
-  <!-- WHAT THIS IS AND IS NOT -->
+  <!-- DISCLAIMER -->
   <div class="section fade-in">
-    <div class="section-label">Important — please read</div>
+    <div class="section-label">Important &mdash; please read</div>
     <h2>What this tool <em>is and is not.</em></h2>
     <p>The Factors of Career Choice experience is a career and life reflection tool grounded in behavioral science and vocational psychology. It is designed to help people think more clearly and honestly about the factors that shape their career choices.</p>
 
@@ -273,11 +274,11 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <h3>This tool is not therapy.</h3>
       <p>The Factors of Career Choice experience is not therapy, counseling, psychological treatment, or a substitute for a licensed mental health professional. Tyler Blackwell is a workforce strategist and career coach. Dr. Richard Blackwell is a psychologist and life coach. Neither the tool nor its creators are providing clinical mental health services through this platform.</p>
       <p>The AI coach within this tool is powered by large language model technology. It is not a licensed therapist, psychologist, counselor, or mental health professional of any kind. Its reflections are intended to support self-examination and career clarity — not to diagnose, treat, or provide mental health care.</p>
-      <p>If you are experiencing significant emotional distress, depression, anxiety, grief, trauma, or any mental health challenge, we strongly encourage you to seek support from a qualified mental health professional. The conversations you have in this tool are not a substitute for that support.</p>
+      <p>If you are experiencing significant emotional distress, depression, anxiety, grief, trauma, or any mental health challenge, seeking support from a qualified mental health professional is strongly encouraged. The conversations you have in this tool are not a substitute for that support.</p>
       <div class="crisis-box">
         <p><b>If you are in crisis or having thoughts of harming yourself or others:</b></p>
-        <p>Call or text <b>988</b> — Suicide and Crisis Lifeline (US) — available 24 hours a day, 7 days a week.</p>
-        <p>Text <b>HOME to 741741</b> — Crisis Text Line — free, confidential, 24/7.</p>
+        <p>Call or text <b>988</b> &mdash; Suicide and Crisis Lifeline (US) &mdash; available 24 hours a day, 7 days a week.</p>
+        <p>Text <b>HOME to 741741</b> &mdash; Crisis Text Line &mdash; free, confidential, 24/7.</p>
         <p>Call <b>911</b> or go to your nearest emergency room if you are in immediate danger.</p>
         <p>International resources: <b>findahelpline.com</b></p>
       </div>
